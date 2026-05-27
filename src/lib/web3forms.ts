@@ -7,7 +7,7 @@
  *   3. Check the inbox — the key will be emailed to you
  *   4. Paste it below and redeploy
  */
-export const WEB3FORMS_KEY = ""; // ← paste your access key here
+export const WEB3FORMS_KEY = "3f9c84ae-8baa-4857-b6d6-2ec57e12fa51";
 
 export async function submitToWeb3Forms(fields: Record<string, string>) {
   if (!WEB3FORMS_KEY) {
