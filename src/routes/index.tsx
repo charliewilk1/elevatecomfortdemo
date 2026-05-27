@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/Hero";
-import { OfferModule } from "@/components/sections/OfferModule";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { RecentInstallations } from "@/components/sections/RecentInstallations";
+import { OfferModule } from "@/components/sections/OfferModule";
 import { WhatsIncluded } from "@/components/sections/WhatsIncluded";
-import { MiniSplitBenefits } from "@/components/sections/MiniSplitBenefits";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
 import { BrandsSection } from "@/components/sections/BrandsSection";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -30,16 +29,15 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-// Reorder, comment out, or remove any of these to change the homepage layout.
+// Reorder, comment out, or remove any section to change the homepage layout.
 function Home() {
   return (
     <>
       <Hero />
-      <OfferModule />
       <ServicesPreview />
       <RecentInstallations />
+      <OfferModule />
       <WhatsIncluded />
-      <MiniSplitBenefits />
       <SimpleStartToFinish />
       <BrandsSection />
       <Testimonials />

@@ -1,27 +1,47 @@
 import { testimonials } from "@/content/testimonials";
+import { Star } from "lucide-react";
 
-// Replace placeholder content with real customer quotes when available.
+// Replace placeholder quotes with real customer reviews when available.
 export function Testimonials() {
   return (
-    <section className="section-y border-y border-border">
+    <section className="section-y bg-ice/40">
       <div className="container-page">
-        <p className="mb-10 text-[11px] font-bold uppercase tracking-[0.2em] text-navy/40">
+        <h2 className="mb-10 text-center text-2xl font-bold text-navy sm:text-3xl">
           What Customers Say
-        </p>
+        </h2>
 
-        <div className="grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
+        <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((t, i) => (
-            <div
+            <figure
               key={i}
-              className="md:px-10 first:md:pl-0 last:md:pr-0"
+              className="flex flex-col rounded-xl bg-white p-6 shadow-sm ring-1 ring-border"
             >
-              <blockquote className="text-[15px] leading-relaxed text-foreground">
+              {/* Stars */}
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <Star
+                    key={j}
+                    className="h-4 w-4 fill-amber-400 text-amber-400"
+                    strokeWidth={0}
+                  />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-foreground">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <p className="mt-5 text-sm font-semibold text-navy">
-                — {t.name}
-              </p>
-            </div>
+
+              {/* Attribution */}
+              <figcaption className="mt-5 border-t border-border pt-4 text-sm font-semibold text-navy">
+                {t.name}
+                {t.location && (
+                  <span className="ml-1 font-normal text-muted-foreground">
+                    · {t.location}
+                  </span>
+                )}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

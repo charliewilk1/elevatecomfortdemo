@@ -10,6 +10,13 @@ export type Service = {
 
 export const services: Service[] = [
   {
+    slug: "mini-splits",
+    title: "Mini Split Systems",
+    short: "Ductless comfort for bedrooms, additions, garages, and offices.",
+    long: "Single-room and whole-home ductless mini split installs — no ductwork needed, efficient, and quiet.",
+    icon: Wind,
+  },
+  {
     slug: "air-conditioning",
     title: "Air Conditioning",
     short: "Installation, repair, and maintenance to keep you cool all summer.",
@@ -22,13 +29,6 @@ export const services: Service[] = [
     short: "Reliable heating service to keep your home warm in winter.",
     long: "Heat pump and heating tune-ups, repairs, and installs that keep your system running through the coldest months.",
     icon: Flame,
-  },
-  {
-    slug: "mini-splits",
-    title: "Mini Splits",
-    short: "Ductless comfort with flexible, efficient installation options.",
-    long: "Single-room and whole-home ductless mini split installs for bedrooms, additions, garages, and offices.",
-    icon: Wind,
   },
   {
     slug: "maintenance",
