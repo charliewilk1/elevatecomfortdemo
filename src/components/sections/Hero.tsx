@@ -1,13 +1,11 @@
 import { CallNowButton, QuoteButton } from "@/components/ui/cta";
-import { site } from "@/content/site";
 import { currentOffer } from "@/content/offers";
 import heroImage from "@/assets/hero-image.jpg";
-import { MapPin } from "lucide-react";
 
 export function Hero() {
   return (
     <section className="relative bg-gradient-to-br from-ice/70 via-ice/30 to-white">
-      <div className="container-page grid items-center gap-10 py-10 md:grid-cols-2 md:gap-12 md:py-16">
+      <div className="container-page grid items-center gap-10 py-8 md:grid-cols-2 md:gap-12 md:py-12">
         {/* Left: copy */}
         <div className="order-2 md:order-1">
           <h1 className="text-[2.6rem] leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-[3.5rem]">
@@ -21,11 +19,6 @@ export function Hero() {
             install and service mini splits, AC, and heating across the
             Tri-State Area.
           </p>
-
-          <div className="mt-5 flex items-start gap-2 text-sm text-navy">
-            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-orange" />
-            <span>{site.serviceArea}</span>
-          </div>
 
           <div className="mt-7 flex flex-wrap gap-3">
             <CallNowButton size="lg" variant="navy" />

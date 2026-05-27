@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { MessageSquare, Sparkles, Wrench, MapPin } from "lucide-react";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { site } from "@/content/site";
 
@@ -23,59 +22,48 @@ export const Route = createFileRoute("/about")({
 });
 
 const pillars = [
-  { icon: Wrench, title: "Professional Service", desc: "Trained, on time, and respectful of your home or space." },
-  { icon: MessageSquare, title: "Clear Communication", desc: "Straight answers — no upsells, no surprises." },
-  { icon: Sparkles, title: "Clean Installation", desc: "Tidy line sets, secure mounting, no mess left behind." },
-  { icon: MapPin, title: "Local Service Feel", desc: "Small local outfit serving the Tri-State Area." },
+  { title: "Professional Service", desc: "Trained, on time, and respectful of your home or space." },
+  { title: "Clear Communication", desc: "Straight answers — no upsells, no surprises." },
+  { title: "Clean Installation", desc: "Tidy line sets, secure mounting, no mess left behind." },
+  { title: "Local Service Feel", desc: "Small local outfit serving the Tri-State Area." },
 ];
 
 function AboutPage() {
   return (
     <>
-      <section className="border-b border-border bg-ice/60">
+      <section className="bg-navy text-white">
         <div className="container-page py-16 sm:py-20">
           <div className="text-xs font-bold uppercase tracking-[0.18em] text-orange">
             About us
           </div>
-          <h1 className="mt-3 text-4xl font-bold uppercase text-navy sm:text-5xl md:text-6xl">
-            Reliable comfort,
+          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl">
+            Small crew.
             <br />
-            <span className="text-orange">handled right.</span>
+            <span className="text-orange">Real work.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Elevate Comfort AC/Heating helps homeowners and businesses across
-            the Tri-State Area with reliable AC, heating, and mini split service.
+          <p className="mt-5 max-w-2xl text-base text-white/70 sm:text-lg">
+            We're a small HVAC outfit in the Tri-State Area — mini splits are our
+            main thing, but we handle AC and heating too.
           </p>
         </div>
       </section>
 
       <section className="section-y">
-        <div className="container-page grid gap-5 sm:grid-cols-2">
-          {pillars.map((p) => {
-            const Icon = p.icon;
-            return (
-              <div
-                key={p.title}
-                className="card-hover rounded-2xl border border-border bg-card p-7"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange/10 text-orange">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h2 className="mt-5 text-xl font-bold uppercase text-navy">
-                  {p.title}
-                </h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {p.desc}
-                </p>
-              </div>
-            );
-          })}
+        <div className="container-page grid gap-10 sm:grid-cols-2">
+          {pillars.map((p) => (
+            <div key={p.title} className="border-t-2 border-orange pt-5">
+              <h2 className="text-lg font-bold text-navy">{p.title}</h2>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                {p.desc}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
       <section className="section-y bg-navy text-white">
         <div className="container-page max-w-3xl">
-          <h2 className="text-3xl font-bold uppercase sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-4xl">
             Our approach
           </h2>
           <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">

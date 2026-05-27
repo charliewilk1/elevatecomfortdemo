@@ -25,17 +25,17 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <>
-      <section className="border-b border-border bg-ice/60">
+      <section className="bg-navy text-white">
         <div className="container-page py-16 sm:py-20">
           <div className="text-xs font-bold uppercase tracking-[0.18em] text-orange">
             Get in touch
           </div>
-          <h1 className="mt-3 text-4xl font-bold uppercase text-navy sm:text-5xl md:text-6xl">
+          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl">
             Contact
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
             Fastest way to reach us is by phone or text. Prefer a form? Use the
-            quote form below and we'll get back to you shortly.
+            quote form below and we'll get back to you same day.
           </p>
         </div>
       </section>
@@ -102,7 +102,7 @@ function ContactPage() {
 
           <div className="md:col-span-7">
             <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
-              <h2 className="text-2xl font-bold uppercase text-navy">
+              <h2 className="text-2xl font-bold text-navy">
                 Request a Quote
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">

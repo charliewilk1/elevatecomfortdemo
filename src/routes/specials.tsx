@@ -41,7 +41,7 @@ function SpecialsPage() {
             <Sparkles className="h-3.5 w-3.5" />
             Current Special
           </div>
-          <h1 className="mt-5 text-4xl font-bold uppercase leading-[1.02] sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
             {currentOffer.title}
             <br />
             <span className="text-orange">
@@ -60,78 +60,73 @@ function SpecialsPage() {
             >
               Request a Quote
             </a>
-            <CallNowButton size="lg" variant="outline" />
+            <CallNowButton size="lg" variant="outline-light" />
           </div>
-        </div>
-      </section>
-
-      <section className="section-y border-b border-border">
-        <div className="container-page">
-          <h2 className="text-2xl font-bold text-navy sm:text-3xl">What's Included</h2>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {[
-              "GREE 9/12k BTU mini split system",
-              "Professional installation by our team",
-              "Line set up to 25 ft.",
-              "Electrical connection",
-              "Wall mounting & setup",
-              "System test & walkthrough",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[15px] text-navy">
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
       <section className="section-y">
-        <div className="container-page grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-5">
+        <div className="container-page grid gap-12 md:grid-cols-2">
+          <div>
+            <h2 className="text-2xl font-bold text-navy sm:text-3xl">What's Included</h2>
+            <ul className="mt-6 space-y-3">
+              {[
+                "GREE 9/12k BTU mini split system",
+                "Professional installation by our team",
+                "Line set up to 25 ft.",
+                "Electrical connection",
+                "Wall mounting & setup",
+                "System test & walkthrough",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-[15px] text-navy">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
             <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
               <span className="h-px w-6 bg-orange" />
               Who it's good for
             </div>
-            <h2 className="text-3xl font-bold uppercase text-navy sm:text-4xl">
+            <h2 className="text-2xl font-bold text-navy sm:text-3xl">
               Spaces this works well in
             </h2>
-            <p className="mt-4 text-base text-muted-foreground">
+            <p className="mt-3 text-base text-muted-foreground">
               A 9/12k BTU mini split is ideal for single-zone comfort where
               ductwork doesn't make sense.
             </p>
+            <ul className="mt-5 space-y-3">
+              {goodFor.map((g) => (
+                <li key={g} className="flex items-start gap-3 text-[15px] text-navy">
+                  <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
+                  <span>{g}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-3 md:col-span-7">
-            {goodFor.map((g) => (
-              <li
-                key={g}
-                className="card-hover flex items-start gap-3 rounded-2xl border border-border bg-card p-5"
-              >
-                <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
-                <span className="text-base font-medium text-navy">{g}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
-      <section id="quote" className="section-y bg-ice/60 scroll-mt-24">
+      <section id="quote" className="section-y bg-navy text-white scroll-mt-20">
         <div className="container-page grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
               <span className="h-px w-6 bg-orange" />
               Lock it in
             </div>
-            <h2 className="text-3xl font-bold uppercase text-navy sm:text-4xl">
+            <h2 className="text-3xl font-bold sm:text-4xl">
               Get your mini split quote
             </h2>
-            <p className="mt-4 text-base text-muted-foreground">
+            <p className="mt-4 text-base text-white/70">
               Tell us a bit about the space and we'll confirm pricing,
               timing, and any details specific to your install.
             </p>
           </div>
           <div className="md:col-span-7">
-            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+            <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
               <MiniSplitQuoteForm />
             </div>
           </div>
