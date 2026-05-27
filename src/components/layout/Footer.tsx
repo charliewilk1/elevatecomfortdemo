@@ -27,7 +27,7 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-3">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-orange">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-eyebrow">
             Explore
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -42,7 +42,7 @@ export function Footer() {
         </div>
 
         <div className="md:col-span-5">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-orange">
+          <h3 className="text-sm font-bold uppercase tracking-widest text-eyebrow">
             Services
           </h3>
           <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm sm:grid-cols-2">

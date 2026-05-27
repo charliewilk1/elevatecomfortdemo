@@ -25,15 +25,15 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="container-page py-16 sm:py-20">
-          <div className="text-xs font-bold uppercase tracking-[0.18em] text-orange">
+      <section className="border-b border-border bg-ice/30 py-12 sm:py-16">
+        <div className="container-page">
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-eyebrow">
             Get in touch
           </div>
-          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
             Contact
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Fastest way to reach us is by phone or text. Prefer a form? Use the
             quote form below and we'll get back to you same day.
           </p>
@@ -52,7 +52,7 @@ function ContactPage() {
                   <Phone className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-orange">
+                  <div className="text-xs font-bold uppercase tracking-widest text-eyebrow">
                     Call
                   </div>
                   <div className="mt-1 text-2xl font-bold text-navy">
@@ -72,7 +72,7 @@ function ContactPage() {
                   <MessageSquare className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-orange">
+                  <div className="text-xs font-bold uppercase tracking-widest text-eyebrow">
                     Text
                   </div>
                   <div className="mt-1 text-2xl font-bold text-navy">
@@ -92,7 +92,7 @@ function ContactPage() {
                   <Mail className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-orange">
+                  <div className="text-xs font-bold uppercase tracking-widest text-eyebrow">
                     Email
                   </div>
                   <div className="mt-1 text-base font-bold text-navy break-all">
@@ -109,7 +109,7 @@ function ContactPage() {
                   <MapPin className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-orange">
+                  <div className="text-xs font-bold uppercase tracking-widest text-eyebrow">
                     Service area
                   </div>
                   <div className="mt-1 text-base font-semibold text-navy">

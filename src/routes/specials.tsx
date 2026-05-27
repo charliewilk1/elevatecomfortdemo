@@ -34,30 +34,29 @@ const goodFor = [
 function SpecialsPage() {
   return (
     <>
-      <section className="relative overflow-hidden bg-navy text-white">
-        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-orange/20 blur-3xl" />
-        <div className="container-page relative py-20 sm:py-28">
-          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-orange">
+      <section className="border-b border-border bg-ice/30 py-12 sm:py-16">
+        <div className="container-page">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-eyebrow">
             <Sparkles className="h-3.5 w-3.5" />
             Current Special
           </div>
-          <h1 className="mt-5 text-4xl font-bold uppercase leading-[1.02] tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="mt-4 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
             {currentOffer.title}
             <br />
             <span className="text-orange">
               {currentOffer.price} {currentOffer.priceSuffix}
             </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/80">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             {currentOffer.supporting}
           </p>
-          <p className="mt-2 text-sm text-white/60">{currentOffer.fineprint}</p>
+          <p className="mt-2 text-sm text-navy/40">{currentOffer.fineprint}</p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <CtaAnchor href="#quote" size="lg">
               Request a Quote
             </CtaAnchor>
-            <CallNowButton size="lg" variant="outline-light" />
+            <CallNowButton size="lg" />
           </div>
         </div>
       </section>
@@ -84,8 +83,8 @@ function SpecialsPage() {
           </div>
 
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
-              <span className="h-px w-6 bg-orange" />
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-eyebrow">
+              <span className="h-px w-6 bg-eyebrow" />
               Who it's good for
             </div>
             <h2 className="text-2xl font-bold text-navy sm:text-3xl">
@@ -110,8 +109,8 @@ function SpecialsPage() {
       <section id="quote" className="section-y bg-ice/40 scroll-mt-20">
         <div className="container-page grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
-              <span className="h-px w-6 bg-orange" />
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-eyebrow">
+              <span className="h-px w-6 bg-eyebrow" />
               Lock it in
             </div>
             <h2 className="text-3xl font-bold text-navy sm:text-4xl">

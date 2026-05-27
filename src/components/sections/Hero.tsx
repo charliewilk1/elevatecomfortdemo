@@ -38,7 +38,7 @@ export function Hero() {
           />
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl bg-white/95 px-4 py-3 shadow-lg ring-1 ring-black/5 backdrop-blur sm:bottom-6 sm:left-6 sm:right-auto sm:max-w-[18rem] sm:px-5 sm:py-4">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-orange">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-eyebrow">
                 {currentOffer.title}
               </div>
               <div className="mt-1 flex items-baseline gap-1.5">

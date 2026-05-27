@@ -13,36 +13,36 @@ const included = [
 
 export function OfferModule({ offer = currentOffer }: { offer?: Offer }) {
   return (
-    <section className="section-y bg-navy text-white">
+    <section className="section-y">
       <div className="container-page">
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-10 rounded-2xl border border-border bg-ice/40 p-8 md:grid-cols-2 md:gap-16 sm:p-12">
           {/* Left: offer details + price + CTAs */}
           <div>
-            <p className="text-sm font-bold uppercase tracking-widest text-orange">
+            <p className="text-sm font-bold uppercase tracking-widest text-eyebrow">
               {offer.title}
             </p>
-            <p className="mt-3 max-w-md text-base leading-relaxed text-white/70">
+            <p className="mt-3 max-w-md text-base leading-relaxed text-muted-foreground">
               {offer.supporting}
             </p>
             <div className="mt-6 flex items-baseline gap-3">
-              <span className="text-[3rem] font-extrabold leading-none text-white sm:text-[4rem] md:text-[5rem]">
+              <span className="text-[3rem] font-extrabold leading-none text-navy sm:text-[4rem] md:text-[5rem]">
                 {offer.price}
               </span>
               <span className="text-2xl font-bold text-orange">
                 {offer.priceSuffix}
               </span>
             </div>
-            <p className="mt-2 text-xs text-white/40">{offer.fineprint}</p>
+            <p className="mt-2 text-xs text-navy/40">{offer.fineprint}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <QuoteButton size="lg" variant="orange" />
-              <CallNowButton size="lg" variant="outline-light" />
+              <QuoteButton size="lg" variant="navy" />
+              <CallNowButton size="lg" />
             </div>
           </div>
 
           {/* Right: checklist */}
           <ul className="space-y-4">
             {included.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-[15px] text-white/90">
+              <li key={item} className="flex items-start gap-3 text-[15px] text-navy">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
                 <span>{item}</span>
               </li>

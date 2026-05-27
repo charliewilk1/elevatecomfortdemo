@@ -31,17 +31,17 @@ const pillars = [
 function AboutPage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="container-page py-16 sm:py-20">
-          <div className="text-xs font-bold uppercase tracking-[0.18em] text-orange">
+      <section className="border-b border-border bg-ice/30 py-12 sm:py-16">
+        <div className="container-page">
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-eyebrow">
             About us
           </div>
-          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
             Small crew.
             <br />
             <span className="text-orange">Real work.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
             We're a small HVAC outfit in the Tri-State Area — mini splits are our
             main thing, but we handle AC and heating too.
           </p>

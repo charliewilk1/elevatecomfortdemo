@@ -39,15 +39,15 @@ export const Route = createFileRoute("/services")({
 function ServicesPage() {
   return (
     <>
-      <section className="bg-navy text-white">
-        <div className="container-page py-16 sm:py-20">
-          <div className="text-xs font-bold uppercase tracking-[0.18em] text-orange">
+      <section className="border-b border-border bg-ice/30 py-12 sm:py-16">
+        <div className="container-page">
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-eyebrow">
             What we do
           </div>
-          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-white sm:text-5xl md:text-6xl">
+          <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
             Services
           </h1>
-          <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Mini splits are our main thing — but we handle the full range of
             residential and light commercial HVAC.
           </p>

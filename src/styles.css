@@ -42,10 +42,14 @@
   --color-orange-soft: var(--orange-soft);
   --color-ice: var(--ice);
   --color-sky: var(--sky);
+  --color-eyebrow: var(--eyebrow);
 }
 
 :root {
   --radius: 0.75rem;
+
+  /* ↓ Change this one value to update all eyebrow labels + accent lines site-wide */
+  --eyebrow: var(--orange);
 
   /* Brand — true clean blue (no purple), matching logo */
   --navy: oklch(0.26 0.07 252);          /* deep brand blue */

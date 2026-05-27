@@ -37,7 +37,7 @@ export function Header() {
               >
                 {item.label}
                 {active && (
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-orange" />
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-eyebrow" />
                 )}
               </Link>
             );
