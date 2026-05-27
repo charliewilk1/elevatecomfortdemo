@@ -19,15 +19,16 @@ export function BrandsSection() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
           {brands.map((b) => (
-            <img
-              key={b.name}
-              src={b.logo}
-              alt={`${b.name} logo`}
-              loading="lazy"
-              width={240}
-              height={80}
-              className="h-8 w-auto object-contain opacity-60 grayscale sm:h-10"
-            />
+            <div key={b.name} className="flex h-10 w-28 items-center justify-center sm:h-12 sm:w-32">
+              <img
+                src={b.logo}
+                alt={`${b.name} logo`}
+                loading="lazy"
+                width={240}
+                height={80}
+                className="max-h-full max-w-full object-contain opacity-60 grayscale"
+              />
+            </div>
           ))}
         </div>
       </div>
