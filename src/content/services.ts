@@ -1,47 +1,45 @@
-import { Snowflake, Flame, Wind, Wrench, ShieldCheck } from "lucide-react";
-
 export type Service = {
   slug: string;
   title: string;
   short: string;
   long: string;
-  icon: typeof Snowflake;
 };
 
 export const services: Service[] = [
   {
     slug: "mini-splits",
-    title: "Mini Split Systems",
-    short: "Ductless comfort for bedrooms, additions, garages, and offices.",
-    long: "Single-room and whole-home ductless mini split installs — no ductwork needed, efficient, and quiet.",
-    icon: Wind,
+    title: "Mini Split Installation & Service",
+    short: "Ductless comfort for any room — installed clean, working quiet.",
+    long: "Mini splits are our main thing. Whether you need one zone in a hot bedroom or multiple zones throughout the home, we handle the full install — unit, line set, electrical connection, and walkthrough. We also service and repair existing systems of any brand.",
   },
   {
-    slug: "air-conditioning",
-    title: "Air Conditioning",
-    short: "Installation, repair, and maintenance to keep you cool all summer.",
-    long: "We install, service, and repair central AC and ductless systems sized correctly for your space — no upsells you don't need.",
-    icon: Snowflake,
+    slug: "central-ac",
+    title: "Central Air Conditioning",
+    short: "Central AC installation, repair, and seasonal service.",
+    long: "We install and service central AC systems for whole-home cooling. That includes sizing the system correctly for your space, replacing aging units, and diagnosing and repairing systems that aren't keeping up.",
   },
   {
-    slug: "heating",
-    title: "Heating",
-    short: "Reliable heating service to keep your home warm in winter.",
-    long: "Heat pump and heating tune-ups, repairs, and installs that keep your system running through the coldest months.",
-    icon: Flame,
+    slug: "furnace",
+    title: "Furnace Installation & Service",
+    short: "Gas and oil furnace installs, tune-ups, and repairs.",
+    long: "A properly installed furnace runs efficiently and lasts. We handle new furnace installations, annual tune-ups before heating season, and diagnostics and repairs when something isn't right.",
   },
   {
-    slug: "maintenance",
-    title: "Maintenance",
-    short: "Tune-ups that keep your system efficient and extend its life.",
-    long: "Routine cleanings, filter changes, refrigerant checks, and a written summary of anything that needs attention.",
-    icon: Wrench,
+    slug: "electric-heating",
+    title: "Electric Central Heating",
+    short: "Electric central heating systems installed and serviced.",
+    long: "For homes without gas, electric central heating is a reliable option. We install and service electric air handlers and heating systems, keeping your home warm through the winter without relying on fuel delivery.",
   },
   {
-    slug: "repairs",
-    title: "Repairs",
-    short: "Honest diagnostics and repairs when your system isn't keeping up.",
-    long: "We diagnose the issue, walk you through your options, and only do the work you approve.",
-    icon: ShieldCheck,
+    slug: "baseboard-heating",
+    title: "Baseboard Heating",
+    short: "Electric baseboard heater installation and service.",
+    long: "Baseboard heaters are simple, zone-based, and reliable when installed correctly. We install new units, replace aging ones, and troubleshoot systems that aren't heating evenly.",
+  },
+  {
+    slug: "wall-unit-removal",
+    title: "Through-Wall Unit Removal & Restoration",
+    short: "Old sleeve units removed — wall patched, insulated, and finished.",
+    long: "Old through-wall AC sleeve units leave a hole in your exterior wall. We remove the unit and sleeve, properly insulate the cavity, and restore the wall on both sides — sheetrocking and patching the interior, and patching or installing new siding on the exterior. Clean finish, no trace it was there.",
   },
 ];

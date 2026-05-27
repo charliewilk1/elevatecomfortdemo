@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Phone, MessageSquare, MapPin } from "lucide-react";
+import { Phone, MessageSquare, MapPin, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { GeneralQuoteForm } from "@/components/forms/GeneralQuoteForm";
 
@@ -80,6 +80,26 @@ function ContactPage() {
                   </div>
                   <div className="mt-1 text-sm text-muted-foreground">
                     Send a quick text — feel free to include photos.
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href={site.emailHref}
+                className="card-hover flex items-start gap-4 rounded-2xl border border-border bg-card p-6"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/10 text-navy">
+                  <Mail className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-widest text-orange">
+                    Email
+                  </div>
+                  <div className="mt-1 text-base font-bold text-navy break-all">
+                    {site.email}
+                  </div>
+                  <div className="mt-1 text-sm text-muted-foreground">
+                    We'll get back to you same day.
                   </div>
                 </div>
               </a>

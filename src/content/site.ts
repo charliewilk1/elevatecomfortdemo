@@ -4,6 +4,8 @@ export const site = {
   phone: "347-215-1377",
   phoneHref: "tel:+13472151377",
   smsHref: "sms:+13472151377",
+  email: "elevatecomforthvac@gmail.com",
+  emailHref: "mailto:elevatecomforthvac@gmail.com",
   serviceArea: "Serving homeowners and businesses across the Tri-State Area.",
   nav: [
     { to: "/", label: "Home" },

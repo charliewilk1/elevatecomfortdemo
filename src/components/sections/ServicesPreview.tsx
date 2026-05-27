@@ -5,12 +5,14 @@ import acImg from "@/assets/installs/outdoor-condenser.jpg";
 import heatingImg from "@/assets/installs/bedroom-install.jpg";
 import heroImg from "@/assets/hero-image.jpg";
 
+// Placeholder mapping — replace values with real photos when available
 const photoMap: Record<string, string> = {
-  "mini-splits": miniSplitImg,
-  "air-conditioning": acImg,
-  "heating": heatingImg,
-  "maintenance": heroImg,
-  "repairs": acImg,
+  "mini-splits":        miniSplitImg,   // ✓ real photo
+  "central-ac":         acImg,          // ✓ real photo
+  "furnace":            heatingImg,     // ⚠ placeholder
+  "electric-heating":   heroImg,        // ⚠ placeholder
+  "baseboard-heating":  heatingImg,     // ⚠ placeholder
+  "wall-unit-removal":  acImg,          // ⚠ placeholder
 };
 
 export function ServicesPreview() {
@@ -29,7 +31,6 @@ export function ServicesPreview() {
           </Link>
         </div>
 
-        {/* Featured card full-width on mobile/tablet, spans 2 cols on desktop */}
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <ServiceCard service={featured} className="sm:col-span-2 lg:col-span-2 lg:row-span-2" tall />
           {rest.map((s) => (
@@ -64,18 +65,13 @@ function ServiceCard({
       className={`group relative overflow-hidden rounded-xl ${tall ? "aspect-[4/3] lg:aspect-auto lg:min-h-[28rem]" : "aspect-[4/3]"} ${className}`}
       aria-label={`Request a quote for ${service.title}`}
     >
-      {/* Photo */}
       <img
         src={photo}
         alt={service.title}
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       />
-
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/30 to-transparent" />
-
-      {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
         <h3 className={`font-bold text-white ${tall ? "text-2xl sm:text-3xl" : "text-lg"}`}>
           {service.title}

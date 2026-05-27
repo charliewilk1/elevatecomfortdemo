@@ -1,16 +1,23 @@
 import greeLogo from "@/assets/brands/gree.png";
+import daikinLogo from "@/assets/brands/daikin.png";
+import mitsubishiLogo from "@/assets/brands/mitsubishi.png";
+import tclLogo from "@/assets/brands/tcl.svg";
 
-// Only confirmed brands. Add more here when the business confirms them.
-const brands = [{ name: "GREE", logo: greeLogo }];
+const brands = [
+  { name: "GREE", logo: greeLogo },
+  { name: "Daikin", logo: daikinLogo },
+  { name: "Mitsubishi Electric", logo: mitsubishiLogo },
+  { name: "TCL", logo: tclLogo },
+];
 
 export function BrandsSection() {
   return (
-    <section className="py-10">
-      <div className="container-page flex flex-col items-center gap-5 sm:flex-row sm:justify-center sm:gap-10">
-        <p className="text-sm font-bold uppercase tracking-widest text-navy/50">
-          Official GREE Installer
+    <section className="border-y border-border py-10">
+      <div className="container-page">
+        <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-navy/40">
+          Brands We Work With
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-8">
+        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
           {brands.map((b) => (
             <img
               key={b.name}
@@ -19,7 +26,7 @@ export function BrandsSection() {
               loading="lazy"
               width={240}
               height={80}
-              className="h-10 w-auto object-contain opacity-80 sm:h-12"
+              className="h-8 w-auto object-contain opacity-60 grayscale sm:h-10"
             />
           ))}
         </div>

@@ -2,6 +2,20 @@ import { createFileRoute } from "@tanstack/react-router";
 import { services } from "@/content/services";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
+import miniSplitImg from "@/assets/installs/mini-split-wall.jpg";
+import acImg from "@/assets/installs/outdoor-condenser.jpg";
+import heatingImg from "@/assets/installs/bedroom-install.jpg";
+import heroImg from "@/assets/hero-image.jpg";
+
+// Placeholder mapping — replace values with real photos when available
+const photoMap: Record<string, string> = {
+  "mini-splits":        miniSplitImg,   // ✓ real photo
+  "central-ac":         acImg,          // ✓ real photo
+  "furnace":            heatingImg,     // ⚠ placeholder
+  "electric-heating":   heroImg,        // ⚠ placeholder
+  "baseboard-heating":  heatingImg,     // ⚠ placeholder
+  "wall-unit-removal":  acImg,          // ⚠ placeholder
+};
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -10,12 +24,12 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Mini split installation, AC installation, AC repair, heating service, and maintenance across the Tri-State Area.",
+          "Mini split installation, central AC, furnace, electric heating, baseboard heating, and through-wall unit removal across the Tri-State Area.",
       },
       { property: "og:title", content: "Services — Elevate Comfort AC/Heating" },
       {
         property: "og:description",
-        content: "Mini split installs, AC and heating service in the Tri-State Area.",
+        content: "Full HVAC service — mini splits, AC, heating, and wall restoration in the Tri-State Area.",
       },
     ],
   }),
@@ -34,26 +48,41 @@ function ServicesPage() {
             Services
           </h1>
           <p className="mt-4 max-w-2xl text-base text-white/70 sm:text-lg">
-            Mini split, AC, and heating service done cleanly and without the fluff.
+            Mini splits are our main thing — but we handle the full range of
+            residential and light commercial HVAC.
           </p>
         </div>
       </section>
 
       <section className="section-y">
         <div className="container-page divide-y divide-border">
-          {services.map((s) => (
-            <article
-              key={s.slug}
-              className="py-10 first:pt-0 last:pb-0"
-            >
-              <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                {s.title}
-              </h2>
-              <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                {s.long}
-              </p>
-            </article>
-          ))}
+          {services.map((s, i) => {
+            const photo = photoMap[s.slug] ?? heroImg;
+            const imageRight = i % 2 !== 0;
+            return (
+              <article
+                key={s.slug}
+                className="grid gap-8 py-12 first:pt-0 last:pb-0 md:grid-cols-2 md:gap-16 md:items-center"
+              >
+                <div className={imageRight ? "md:order-2" : ""}>
+                  <img
+                    src={photo}
+                    alt={s.title}
+                    loading="lazy"
+                    className="w-full rounded-2xl object-cover aspect-[4/3] shadow-sm"
+                  />
+                </div>
+                <div className={imageRight ? "md:order-1" : ""}>
+                  <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                    {s.title}
+                  </h2>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    {s.long}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
