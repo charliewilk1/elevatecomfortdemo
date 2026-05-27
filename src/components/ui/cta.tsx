@@ -11,7 +11,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   orange:
-    "bg-[linear-gradient(to_bottom,oklch(0.75_0.17_45),oklch(0.65_0.21_45))] text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)]",
+    "bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)]",
   navy: "bg-navy text-white shadow-sm hover:bg-navy-soft hover:shadow-md",
   outline:
     "border border-navy text-navy bg-transparent hover:bg-navy hover:text-white",

@@ -56,7 +56,7 @@ function SpecialsPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#quote"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-orange px-7 text-base font-bold uppercase tracking-wide text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-orange/90"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] px-7 text-base font-bold uppercase tracking-wide text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)]"
             >
               Request a Quote
             </a>
