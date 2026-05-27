@@ -3,7 +3,6 @@ import { Hero } from "@/components/sections/Hero";
 import { ServicesPreview } from "@/components/sections/ServicesPreview";
 import { RecentInstallations } from "@/components/sections/RecentInstallations";
 import { OfferModule } from "@/components/sections/OfferModule";
-import { WhatsIncluded } from "@/components/sections/WhatsIncluded";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
 import { BrandsSection } from "@/components/sections/BrandsSection";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -37,7 +36,6 @@ function Home() {
       <ServicesPreview />
       <RecentInstallations />
       <OfferModule />
-      <WhatsIncluded />
       <SimpleStartToFinish />
       <BrandsSection />
       <Testimonials />

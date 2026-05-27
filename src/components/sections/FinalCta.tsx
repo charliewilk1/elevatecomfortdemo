@@ -26,7 +26,7 @@ export function FinalCta() {
                 Ready for Reliable Comfort?
               </h2>
               <p className="mt-2 text-white/80">
-                Call or text us today or request a free quote.
+                Most jobs scheduled within the week. Send us a message and we'll get back same day.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3">

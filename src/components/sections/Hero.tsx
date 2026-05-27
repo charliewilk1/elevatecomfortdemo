@@ -17,8 +17,9 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {site.name} delivers reliable cooling and heating with honest
-            pricing, quality work, and friendly local service.
+            Your home shouldn't be a sauna in July or a freezer in January. We
+            install and service mini splits, AC, and heating across the
+            Tri-State Area.
           </p>
 
           <div className="mt-5 flex items-start gap-2 text-sm text-navy">

@@ -1,37 +1,53 @@
 import { currentOffer, type Offer } from "@/content/offers";
 import { CallNowButton, QuoteButton } from "@/components/ui/cta";
+import { Check } from "lucide-react";
+
+const included = [
+  "GREE 9/12k BTU mini split system",
+  "Professional installation by our team",
+  "Line set up to 25 ft.",
+  "Electrical connection",
+  "Wall mounting & setup",
+  "System test & walkthrough",
+];
 
 export function OfferModule({ offer = currentOffer }: { offer?: Offer }) {
   return (
-    <section className="section-y border-y border-border bg-ice/40">
+    <section className="section-y bg-navy text-white">
       <div className="container-page">
-        <div className="grid items-center gap-10 md:grid-cols-[1.5fr_1fr] md:gap-16">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+          {/* Left: offer details + price + CTAs */}
           <div>
-            <h2 className="text-3xl font-bold text-navy sm:text-4xl">
+            <p className="text-sm font-bold uppercase tracking-widest text-orange">
               {offer.title}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            </p>
+            <p className="mt-3 max-w-md text-base leading-relaxed text-white/70">
               {offer.supporting}
             </p>
-            <p className="mt-2 text-xs text-muted-foreground/60">
-              {offer.fineprint}
-            </p>
-          </div>
-
-          <div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-[4.5rem] font-extrabold leading-none text-navy sm:text-[5.5rem]">
+            <div className="mt-6 flex items-baseline gap-3">
+              <span className="text-[5rem] font-extrabold leading-none text-white">
                 {offer.price}
               </span>
-              <span className="text-xl font-bold text-orange">
+              <span className="text-2xl font-bold text-orange">
                 {offer.priceSuffix}
               </span>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <QuoteButton size="lg" />
-              <CallNowButton size="lg" variant="navy" />
+            <p className="mt-2 text-xs text-white/40">{offer.fineprint}</p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <QuoteButton size="lg" variant="orange" />
+              <CallNowButton size="lg" variant="outline-light" />
             </div>
           </div>
+
+          {/* Right: checklist */}
+          <ul className="space-y-4">
+            {included.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-[15px] text-white/90">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

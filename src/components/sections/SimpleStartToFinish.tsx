@@ -5,7 +5,7 @@ const steps = [
     n: 1,
     icon: CalendarCheck,
     title: "Request a Quote",
-    desc: "Call, text, or fill out the form — we'll get back to you quickly.",
+    desc: "Tell us what you need and where. We'll send a quote fast.",
   },
   {
     n: 2,

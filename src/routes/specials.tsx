@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles, Check } from "lucide-react";
 import { currentOffer } from "@/content/offers";
 import { CallNowButton } from "@/components/ui/cta";
-import { WhatsIncluded } from "@/components/sections/WhatsIncluded";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { MiniSplitQuoteForm } from "@/components/forms/MiniSplitQuoteForm";
 
@@ -66,7 +65,26 @@ function SpecialsPage() {
         </div>
       </section>
 
-      <WhatsIncluded />
+      <section className="section-y border-b border-border">
+        <div className="container-page">
+          <h2 className="text-2xl font-bold text-navy sm:text-3xl">What's Included</h2>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {[
+              "GREE 9/12k BTU mini split system",
+              "Professional installation by our team",
+              "Line set up to 25 ft.",
+              "Electrical connection",
+              "Wall mounting & setup",
+              "System test & walkthrough",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-3 text-[15px] text-navy">
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" strokeWidth={2.5} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section className="section-y">
         <div className="container-page grid gap-12 md:grid-cols-12">
