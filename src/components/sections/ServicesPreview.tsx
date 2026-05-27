@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { services } from "@/content/services";
 import miniSplitImg from "@/assets/installs/mini-split-wall.jpg";
@@ -15,13 +16,50 @@ const photoMap: Record<string, string> = {
   "wall-unit-removal":  acImg,          // ⚠ placeholder
 };
 
-// Show featured + 4 secondary cards — keeps the grid clean (no orphan card).
-// Furnace is on the full services page; add it back here when you have a real photo.
-const HIDDEN_FROM_PREVIEW = new Set(["furnace"]);
+const ROTATE_INTERVAL = 3500; // ms between swaps
+const FADE_DURATION   = 500;  // ms — must match CSS transition-duration below
 
 export function ServicesPreview() {
-  const [featured, ...all] = services;
-  const secondary = all.filter((s) => !HIDDEN_FROM_PREVIEW.has(s.slug));
+  const [featured, ...rest] = services;
+
+  // Slots: 4 indices into `rest[]` currently displayed on screen.
+  // The remaining index (rest.length - 4 ... rest.length - 1) is hidden and waits to rotate in.
+  const initialSlots = rest.slice(0, 4).map((_, i) => i);
+  const [slots, setSlots] = useState<number[]>(initialSlots);
+  const [fadingSlot, setFadingSlot] = useState<number | null>(null);
+
+  // Refs so the interval closure doesn't go stale.
+  const hiddenIdxRef  = useRef(4);  // index into rest[] that's currently off-screen
+  const lastSlotRef   = useRef(-1); // track last replaced slot to avoid repeats
+
+  useEffect(() => {
+    // No rotation needed when there are 4 or fewer non-featured services.
+    if (rest.length <= 4) return;
+
+    const id = setInterval(() => {
+      // Pick a random slot, but not the same one we just changed.
+      let pos: number;
+      do {
+        pos = Math.floor(Math.random() * 4);
+      } while (pos === lastSlotRef.current);
+      lastSlotRef.current = pos;
+
+      setFadingSlot(pos); // fade out
+
+      setTimeout(() => {
+        setSlots((prev) => {
+          const next = [...prev];
+          const outgoing = next[pos];
+          next[pos] = hiddenIdxRef.current;
+          hiddenIdxRef.current = outgoing;
+          return next;
+        });
+        setFadingSlot(null); // fade back in
+      }, FADE_DURATION);
+    }, ROTATE_INTERVAL);
+
+    return () => clearInterval(id);
+  }, [rest.length]);
 
   return (
     <section className="section-y">
@@ -37,9 +75,22 @@ export function ServicesPreview() {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <ServiceCard service={featured} className="sm:col-span-2 lg:col-span-2 lg:row-span-2" tall />
-          {secondary.map((s) => (
-            <ServiceCard key={s.slug} service={s} />
+          {/* Featured card — always mini-splits */}
+          <ServiceCard
+            service={featured}
+            className="sm:col-span-2 lg:col-span-2 lg:row-span-2"
+            tall
+          />
+
+          {/* Rotating secondary cards */}
+          {slots.map((serviceIdx, slotIdx) => (
+            <div
+              key={slotIdx}
+              style={{ transitionDuration: `${FADE_DURATION}ms` }}
+              className={`transition-opacity ${fadingSlot === slotIdx ? "opacity-0" : "opacity-100"}`}
+            >
+              <ServiceCard service={rest[serviceIdx]} className="h-full" />
+            </div>
           ))}
         </div>
 

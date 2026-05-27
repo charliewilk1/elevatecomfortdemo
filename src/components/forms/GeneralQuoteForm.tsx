@@ -12,14 +12,27 @@ const schema = z.object({
   notes: z.string().max(2000).optional(),
 });
 
-const services = [
-  "Mini split installation",
-  "AC installation",
-  "AC repair / service",
-  "Heating service",
+// Match these labels to the slug map below — keep them in sync.
+const SERVICE_OPTIONS = [
+  "Mini split installation & service",
+  "Central AC installation / repair",
+  "Furnace installation / service",
+  "Electric heating",
+  "Baseboard heating",
+  "Through-wall unit removal & restoration",
   "Maintenance / service call",
   "Not sure yet",
 ];
+
+// Maps service slugs from /services to the matching form option label.
+const SLUG_TO_SERVICE: Record<string, string> = {
+  "mini-splits":       "Mini split installation & service",
+  "central-ac":        "Central AC installation / repair",
+  "furnace":           "Furnace installation / service",
+  "electric-heating":  "Electric heating",
+  "baseboard-heating": "Baseboard heating",
+  "wall-unit-removal": "Through-wall unit removal & restoration",
+};
 
 const timings = [
   "ASAP",
@@ -28,9 +41,11 @@ const timings = [
   "Just exploring",
 ];
 
-export function GeneralQuoteForm() {
+export function GeneralQuoteForm({ defaultService }: { defaultService?: string }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+
+  const preselected = defaultService ? (SLUG_TO_SERVICE[defaultService] ?? "") : "";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -62,8 +77,19 @@ export function GeneralQuoteForm() {
       <Field label="Phone" name="phone" type="tel" error={errors.phone} />
       <Field label="Town / area" name="town" error={errors.town} />
 
-      <Select label="Service needed" name="service" options={services} error={errors.service} />
-      <Select label="How soon do you need help?" name="timing" options={timings} error={errors.timing} />
+      <Select
+        label="Service needed"
+        name="service"
+        options={SERVICE_OPTIONS}
+        defaultValue={preselected}
+        error={errors.service}
+      />
+      <Select
+        label="How soon do you need help?"
+        name="timing"
+        options={timings}
+        error={errors.timing}
+      />
 
       <TextArea
         label="Notes (optional)"
@@ -111,12 +137,12 @@ export function Field({
 }
 
 export function Select({
-  label, name, options, error,
-}: { label: string; name: string; options: string[]; error?: string }) {
+  label, name, options, error, defaultValue = "",
+}: { label: string; name: string; options: string[]; error?: string; defaultValue?: string }) {
   return (
     <div>
       <Label htmlFor={name}>{label}</Label>
-      <select id={name} name={name} className={fieldBase(error)} defaultValue="">
+      <select id={name} name={name} className={fieldBase(error)} defaultValue={defaultValue}>
         <option value="" disabled>Select an option…</option>
         {options.map((o) => (
           <option key={o} value={o}>{o}</option>

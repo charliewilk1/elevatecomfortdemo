@@ -1,9 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { z } from "zod";
 import { Phone, MessageSquare, MapPin, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { GeneralQuoteForm } from "@/components/forms/GeneralQuoteForm";
 
+const searchSchema = z.object({
+  service: z.string().optional().catch(undefined),
+});
+
 export const Route = createFileRoute("/contact")({
+  validateSearch: searchSchema,
   head: () => ({
     meta: [
       { title: "Contact — Elevate Comfort AC/Heating | 347-215-1377" },
@@ -23,6 +29,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const { service } = Route.useSearch();
   return (
     <>
       <section className="border-b border-border bg-ice/30 py-12 sm:py-16">
@@ -129,7 +136,7 @@ function ContactPage() {
                 A few quick details so we can get you a fair price.
               </p>
               <div className="mt-6">
-                <GeneralQuoteForm />
+                <GeneralQuoteForm defaultService={service} />
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { services } from "@/content/services";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
+import { CtaAnchor } from "@/components/ui/cta";
 import miniSplitImg from "@/assets/installs/mini-split-wall.jpg";
 import acImg from "@/assets/installs/outdoor-condenser.jpg";
 import heatingImg from "@/assets/installs/bedroom-install.jpg";
@@ -80,6 +81,15 @@ function ServicesPage() {
                   <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                     {s.long}
                   </p>
+                  <div className="mt-6">
+                    <CtaAnchor
+                      href={`/contact?service=${s.slug}`}
+                      variant="outline"
+                      size="sm"
+                    >
+                      Get a Quote →
+                    </CtaAnchor>
+                  </div>
                 </div>
               </article>
             );
