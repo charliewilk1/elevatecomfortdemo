@@ -15,8 +15,13 @@ const photoMap: Record<string, string> = {
   "wall-unit-removal":  acImg,          // ⚠ placeholder
 };
 
+// Show featured + 4 secondary cards — keeps the grid clean (no orphan card).
+// Furnace is on the full services page; add it back here when you have a real photo.
+const HIDDEN_FROM_PREVIEW = new Set(["furnace"]);
+
 export function ServicesPreview() {
-  const [featured, ...rest] = services;
+  const [featured, ...all] = services;
+  const secondary = all.filter((s) => !HIDDEN_FROM_PREVIEW.has(s.slug));
 
   return (
     <section className="section-y">
@@ -33,7 +38,7 @@ export function ServicesPreview() {
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <ServiceCard service={featured} className="sm:col-span-2 lg:col-span-2 lg:row-span-2" tall />
-          {rest.map((s) => (
+          {secondary.map((s) => (
             <ServiceCard key={s.slug} service={s} />
           ))}
         </div>
@@ -60,10 +65,10 @@ function ServiceCard({
   const photo = photoMap[service.slug] ?? heroImg;
 
   return (
-    <Link
-      to="/contact"
+    <a
+      href={`/services#${service.slug}`}
       className={`group relative overflow-hidden rounded-xl ${tall ? "aspect-[4/3] lg:aspect-auto lg:min-h-[28rem]" : "aspect-[4/3]"} ${className}`}
-      aria-label={`Request a quote for ${service.title}`}
+      aria-label={service.title}
     >
       <img
         src={photo}
@@ -80,9 +85,9 @@ function ServiceCard({
           {service.short}
         </p>
         <p className="mt-3 text-xs font-bold uppercase tracking-wider text-orange opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          Request a Quote →
+          Learn more →
         </p>
       </div>
-    </Link>
+    </a>
   );
 }

@@ -62,7 +62,8 @@ function ServicesPage() {
             return (
               <article
                 key={s.slug}
-                className="grid gap-8 py-12 first:pt-0 last:pb-0 md:grid-cols-2 md:gap-16 md:items-center"
+                id={s.slug}
+                className="scroll-mt-20 grid gap-8 py-12 first:pt-0 last:pb-0 md:grid-cols-2 md:gap-16 md:items-center"
               >
                 <div className={imageRight ? "md:order-2" : ""}>
                   <img
