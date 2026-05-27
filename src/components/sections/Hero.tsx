@@ -6,7 +6,7 @@ import { MapPin } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative bg-background">
+    <section className="relative bg-gradient-to-br from-ice/70 via-ice/30 to-white">
       <div className="container-page grid items-center gap-10 py-10 md:grid-cols-2 md:gap-12 md:py-16">
         {/* Left: copy */}
         <div className="order-2 md:order-1">

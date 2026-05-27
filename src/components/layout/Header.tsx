@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/logo/logo-horizontal-transparent.png";
 import { site } from "@/content/site";
 import { CallNowButton } from "@/components/ui/cta";
@@ -11,13 +11,13 @@ export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-background/95 backdrop-blur">
-      <div className="container-page flex h-24 items-center justify-between gap-4">
+    <header className="sticky top-0 z-40 w-full bg-navy">
+      <div className="container-page flex h-20 items-center justify-between gap-4">
         <Link to="/" className="flex shrink-0 items-center" aria-label={site.name}>
           <img
             src={logo}
             alt={site.name}
-            className="h-16 w-auto sm:h-20"
+            className="h-12 w-auto sm:h-14"
             width={520}
             height={160}
           />
@@ -32,12 +32,12 @@ export function Header() {
                 to={item.to}
                 className={cn(
                   "relative px-4 py-2 text-sm font-semibold transition-colors",
-                  active ? "text-navy" : "text-navy/70 hover:text-navy",
+                  active ? "text-white" : "text-white/60 hover:text-white",
                 )}
               >
                 {item.label}
                 {active && (
-                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-sky" />
+                  <span className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-orange" />
                 )}
               </Link>
             );
@@ -45,13 +45,13 @@ export function Header() {
         </nav>
 
         <div className="hidden md:block">
-          <CallNowButton size="default" variant="navy" />
+          <CallNowButton size="default" variant="orange" />
         </div>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-navy lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white lg:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -59,27 +59,20 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="border-t border-border bg-background lg:hidden">
+        <div className="border-t border-white/10 bg-navy lg:hidden">
           <div className="container-page flex flex-col gap-1 py-4">
             {site.nav.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-base font-semibold text-navy hover:bg-secondary"
+                className="rounded-lg px-3 py-3 text-base font-semibold text-white/80 hover:bg-white/10 hover:text-white"
               >
                 {item.label}
               </Link>
             ))}
-            <div className="mt-3 flex flex-col gap-2">
-              <CallNowButton variant="navy" />
-              <a
-                href={site.phoneHref}
-                className="mt-1 flex items-center justify-center gap-2 text-sm font-semibold text-navy"
-              >
-                <Phone className="h-4 w-4" />
-                {site.phone}
-              </a>
+            <div className="mt-3">
+              <CallNowButton variant="orange" />
             </div>
           </div>
         </div>
