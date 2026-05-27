@@ -25,7 +25,7 @@ export function OfferModule({ offer = currentOffer }: { offer?: Offer }) {
               {offer.supporting}
             </p>
             <div className="mt-6 flex items-baseline gap-3">
-              <span className="text-[5rem] font-extrabold leading-none text-white">
+              <span className="text-[3rem] font-extrabold leading-none text-white sm:text-[4rem] md:text-[5rem]">
                 {offer.price}
               </span>
               <span className="text-2xl font-bold text-orange">
