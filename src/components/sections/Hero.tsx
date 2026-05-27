@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-image.jpg";
 export function Hero() {
   return (
     <section className="relative bg-gradient-to-br from-ice/70 via-ice/30 to-white">
-      <div className="container-page grid items-center gap-10 py-8 md:grid-cols-2 md:gap-12 md:py-12">
+      <div className="container-page grid items-center gap-10 py-12 md:grid-cols-2 md:gap-12 md:py-20">
         {/* Left: copy */}
         <div className="order-2 md:order-1">
           <h1 className="text-[2.6rem] leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-[3.5rem]">
