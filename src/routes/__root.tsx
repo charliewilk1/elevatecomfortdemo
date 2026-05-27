@@ -7,6 +7,7 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { CtaLink, CtaButton } from "@/components/ui/cta";
 
 import appCss from "../styles.css?url";
 import { SiteLayout } from "@/components/layout/SiteLayout";
@@ -22,12 +23,7 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] px-5 py-2.5 text-sm font-bold uppercase text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105"
-          >
-            Go home
-          </Link>
+          <CtaLink to="/">Go home</CtaLink>
         </div>
       </div>
     </div>
@@ -45,15 +41,14 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
           Something went wrong on our end.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
+          <CtaButton
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="rounded-full bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] px-5 py-2.5 text-sm font-bold uppercase text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105"
           >
             Try again
-          </button>
+          </CtaButton>
           <a
             href="/"
             className="rounded-full border-2 border-navy px-5 py-2.5 text-sm font-bold uppercase text-navy hover:bg-navy hover:text-white"

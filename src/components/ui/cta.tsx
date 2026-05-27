@@ -11,7 +11,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   orange:
-    "bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)]",
+    "bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:brightness-100",
   navy: "bg-navy text-white shadow-sm hover:bg-navy-soft hover:shadow-md",
   outline:
     "border border-navy text-navy bg-transparent hover:bg-navy hover:text-white",
@@ -85,6 +85,31 @@ export function CallNowButton({
       <Phone className="h-4 w-4" />
       {site.phone}
     </CtaAnchor>
+  );
+}
+
+export function CtaButton({
+  variant = "orange",
+  size = "default",
+  className,
+  children,
+  disabled,
+  type = "button",
+  onClick,
+}: Props & {
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  onClick?: () => void;
+}) {
+  return (
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(base, variants[variant], sizes[size], className)}
+    >
+      {children}
+    </button>
   );
 }
 

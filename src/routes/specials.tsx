@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Sparkles, Check } from "lucide-react";
 import { currentOffer } from "@/content/offers";
-import { CallNowButton } from "@/components/ui/cta";
+import { CallNowButton, CtaAnchor } from "@/components/ui/cta";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { MiniSplitQuoteForm } from "@/components/forms/MiniSplitQuoteForm";
 
@@ -54,12 +54,9 @@ function SpecialsPage() {
           <p className="mt-2 text-sm text-white/60">{currentOffer.fineprint}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#quote"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[linear-gradient(to_bottom,oklch(0.74_0.18_45),oklch(0.67_0.19_45))] px-7 text-base font-bold uppercase tracking-wide text-white shadow-[0_2px_6px_rgba(180,70,0,0.3),inset_0_1px_0_rgba(255,255,255,0.25)] transition-all hover:-translate-y-0.5 hover:brightness-105 hover:shadow-[0_4px_14px_rgba(180,70,0,0.4),inset_0_1px_0_rgba(255,255,255,0.25)]"
-            >
+            <CtaAnchor href="#quote" size="lg">
               Request a Quote
-            </a>
+            </CtaAnchor>
             <CallNowButton size="lg" variant="outline-light" />
           </div>
         </div>
