@@ -43,7 +43,7 @@ function SpecialsPage() {
           <h1 className="mt-4 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
             {currentOffer.title}
             <br />
-            <span className="text-orange">
+            <span className="text-sky">
               {currentOffer.price} {currentOffer.priceSuffix}
             </span>
           </h1>

@@ -11,7 +11,7 @@ export function Hero() {
           <h1 className="text-[2.6rem] leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-[3.5rem]">
             Comfort You Can
             <br />
-            <span className="text-orange">Count On.</span>
+            <span className="text-sky">Count On.</span>
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
