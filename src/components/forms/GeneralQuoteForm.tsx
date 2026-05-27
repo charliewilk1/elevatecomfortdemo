@@ -2,6 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { CallNowButton, CtaButton } from "@/components/ui/cta";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -62,13 +63,28 @@ export function GeneralQuoteForm({ defaultService }: { defaultService?: string }
     }
     setErrors({});
     setSubmitting(true);
-    // Frontend-only stub; wire to backend later.
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitting(false);
-    toast.success("Thanks! We'll be in touch shortly.", {
-      description: "Need it faster? Call or text 347-215-1377.",
-    });
-    e.currentTarget.reset();
+    try {
+      await submitToWeb3Forms({
+        subject: `Quote Request: ${result.data.service} — ${result.data.name}`,
+        from_name: result.data.name,
+        Name: result.data.name,
+        Phone: result.data.phone,
+        "Town / Area": result.data.town,
+        Service: result.data.service,
+        Timing: result.data.timing,
+        Notes: result.data.notes ?? "",
+      });
+      toast.success("Thanks! We'll be in touch shortly.", {
+        description: "Need it faster? Call or text 347-215-1377.",
+      });
+      e.currentTarget.reset();
+    } catch {
+      toast.error("Something went wrong sending your request.", {
+        description: "Please call or text us directly at 347-215-1377.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

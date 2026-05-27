@@ -3,6 +3,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { Field, Select, TextArea } from "./GeneralQuoteForm";
 import { CallNowButton, CtaButton } from "@/components/ui/cta";
+import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -34,12 +35,29 @@ export function MiniSplitQuoteForm() {
     }
     setErrors({});
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitting(false);
-    toast.success("Got it — we'll reach out to confirm details.", {
-      description: "Prefer to talk now? Call or text 347-215-1377.",
-    });
-    e.currentTarget.reset();
+    try {
+      await submitToWeb3Forms({
+        subject: `Mini Split Quote — ${result.data.name}`,
+        from_name: result.data.name,
+        Name: result.data.name,
+        Phone: result.data.phone,
+        "Town / Area": result.data.town,
+        "Rooms / Areas": result.data.rooms,
+        "Has Unit Already": result.data.hasUnit,
+        Timing: result.data.timing,
+        Notes: result.data.notes ?? "",
+      });
+      toast.success("Got it — we'll reach out to confirm details.", {
+        description: "Prefer to talk now? Call or text 347-215-1377.",
+      });
+      e.currentTarget.reset();
+    } catch {
+      toast.error("Something went wrong sending your request.", {
+        description: "Please call or text us directly at 347-215-1377.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
