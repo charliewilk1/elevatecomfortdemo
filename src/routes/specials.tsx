@@ -1,0 +1,126 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Sparkles, Check } from "lucide-react";
+import { currentOffer } from "@/content/offers";
+import { CallNowButton } from "@/components/ui/cta";
+import { WhatsIncluded } from "@/components/sections/WhatsIncluded";
+import { FinalCta } from "@/components/sections/FinalCta";
+import { MiniSplitQuoteForm } from "@/components/forms/MiniSplitQuoteForm";
+
+export const Route = createFileRoute("/specials")({
+  head: () => ({
+    meta: [
+      { title: "Mini Split Special — $2,399 Installed | Elevate Comfort AC/Heating" },
+      {
+        name: "description",
+        content:
+          "Limited-time mini split special: 9/12k BTU professionally installed for $2,399. Request a quote to confirm details.",
+      },
+      { property: "og:title", content: "Mini Split Special — $2,399 Installed" },
+      {
+        property: "og:description",
+        content: "9/12k BTU mini split, professionally installed. Tri-State Area.",
+      },
+    ],
+  }),
+  component: SpecialsPage,
+});
+
+const goodFor = [
+  "Bedrooms that don't cool well",
+  "Home offices and additions",
+  "Garages, basements, attic spaces",
+  "Small commercial spaces",
+];
+
+function SpecialsPage() {
+  return (
+    <>
+      <section className="relative overflow-hidden bg-navy text-white">
+        <div className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-orange/20 blur-3xl" />
+        <div className="container-page relative py-20 sm:py-28">
+          <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-orange">
+            <Sparkles className="h-3.5 w-3.5" />
+            Current Special
+          </div>
+          <h1 className="mt-5 text-4xl font-bold uppercase leading-[1.02] sm:text-5xl md:text-6xl">
+            {currentOffer.title}
+            <br />
+            <span className="text-orange">
+              {currentOffer.price} {currentOffer.priceSuffix}
+            </span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg text-white/80">
+            {currentOffer.supporting}
+          </p>
+          <p className="mt-2 text-sm text-white/60">{currentOffer.fineprint}</p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="#quote"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-orange px-7 text-base font-bold uppercase tracking-wide text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-orange/90"
+            >
+              Request a Quote
+            </a>
+            <CallNowButton size="lg" variant="outline" />
+          </div>
+        </div>
+      </section>
+
+      <WhatsIncluded />
+
+      <section className="section-y">
+        <div className="container-page grid gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
+              <span className="h-px w-6 bg-orange" />
+              Who it's good for
+            </div>
+            <h2 className="text-3xl font-bold uppercase text-navy sm:text-4xl">
+              Spaces this works well in
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              A 9/12k BTU mini split is ideal for single-zone comfort where
+              ductwork doesn't make sense.
+            </p>
+          </div>
+          <ul className="space-y-3 md:col-span-7">
+            {goodFor.map((g) => (
+              <li
+                key={g}
+                className="card-hover flex items-start gap-3 rounded-2xl border border-border bg-card p-5"
+              >
+                <Check className="mt-0.5 h-5 w-5 shrink-0 text-orange" />
+                <span className="text-base font-medium text-navy">{g}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="quote" className="section-y bg-ice/60 scroll-mt-24">
+        <div className="container-page grid gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
+            <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
+              <span className="h-px w-6 bg-orange" />
+              Lock it in
+            </div>
+            <h2 className="text-3xl font-bold uppercase text-navy sm:text-4xl">
+              Get your mini split quote
+            </h2>
+            <p className="mt-4 text-base text-muted-foreground">
+              Tell us a bit about the space and we'll confirm pricing,
+              timing, and any details specific to your install.
+            </p>
+          </div>
+          <div className="md:col-span-7">
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8">
+              <MiniSplitQuoteForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FinalCta />
+    </>
+  );
+}

@@ -1,0 +1,49 @@
+import { Link } from "@tanstack/react-router";
+import img1 from "@/assets/installs/outdoor-condenser.jpg";
+import img2 from "@/assets/installs/mini-split-wall.jpg";
+import img3 from "@/assets/installs/bedroom-install.jpg";
+
+const photos = [
+  { src: img1, alt: "Outdoor GREE condenser cleanly mounted on the side of a home" },
+  { src: img2, alt: "Mini split installed in a bright home office" },
+  { src: img3, alt: "Mini split installed above bed in a bedroom" },
+];
+
+export function RecentInstallations() {
+  return (
+    <section className="section-y">
+      <div className="container-page">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="text-2xl tracking-tight text-navy sm:text-3xl">
+              Recent Installations
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              A quick look at recent AC and mini split work.
+            </p>
+            <Link
+              to="/contact"
+              className="mt-2 inline-block text-sm font-semibold text-sky underline-offset-4 hover:underline"
+            >
+              See More Installations →
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+          {photos.map((p, i) => (
+            <img
+              key={i}
+              src={p.src}
+              alt={p.alt}
+              loading="lazy"
+              width={800}
+              height={600}
+              className="aspect-square w-full rounded-lg object-cover"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
