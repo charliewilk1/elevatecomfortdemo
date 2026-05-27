@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X, Phone } from "lucide-react";
-import logo from "@/assets/logo/logo-horizontal.png";
+import logo from "@/assets/logo/logo-horizontal-transparent.png";
 import { site } from "@/content/site";
 import { CallNowButton } from "@/components/ui/cta";
 import { cn } from "@/lib/utils";
@@ -17,7 +17,7 @@ export function Header() {
           <img
             src={logo}
             alt={site.name}
-            className="h-16 w-auto sm:h-20 [mix-blend-mode:multiply]"
+            className="h-16 w-auto sm:h-20"
             width={520}
             height={160}
           />

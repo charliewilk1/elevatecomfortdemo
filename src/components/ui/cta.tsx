@@ -83,10 +83,7 @@ export function CallNowButton({
       aria-label={`Call ${site.phone}`}
     >
       <Phone className="h-4 w-4" />
-      <span className="flex flex-col items-start leading-none">
-        <span className="text-[10px] font-medium opacity-80">Call/Text Now</span>
-        <span className="text-sm font-bold">{site.phone}</span>
-      </span>
+      {site.phone}
     </CtaAnchor>
   );
 }

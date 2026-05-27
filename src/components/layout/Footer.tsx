@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone } from "lucide-react";
-import logo from "@/assets/logo/logo-stacked.png";
+import logo from "@/assets/logo/logo-stacked-transparent.png";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
 
@@ -12,7 +12,7 @@ export function Footer() {
           <img
             src={logo}
             alt={site.name}
-            className="h-24 w-auto [filter:brightness(0)_invert(1)]"
+            className="h-24 w-auto"
           />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
             {site.serviceArea}
