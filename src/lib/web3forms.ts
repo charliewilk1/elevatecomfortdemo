@@ -29,6 +29,7 @@ export async function submitToWeb3Forms(fields: Record<string, string>) {
 
   const json: { success: boolean; message?: string } = await res.json();
   if (!json.success) {
+    console.error("Web3Forms error:", json.message, "| status:", res.status);
     throw new Error(json.message ?? "Submission failed");
   }
 }
