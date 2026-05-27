@@ -50,7 +50,8 @@ export function GeneralQuoteForm({ defaultService }: { defaultService?: string }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget; // capture before any await — currentTarget goes null after async
+    const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     const result = schema.safeParse(data);
     if (!result.success) {
@@ -77,10 +78,11 @@ export function GeneralQuoteForm({ defaultService }: { defaultService?: string }
       toast.success("Thanks! We'll be in touch shortly.", {
         description: "Need it faster? Call or text 347-215-1377.",
       });
-      e.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Unknown error";
       toast.error("Something went wrong sending your request.", {
-        description: "Please call or text us directly at 347-215-1377.",
+        description: `${msg} — or call/text us at 347-215-1377.`,
       });
     } finally {
       setSubmitting(false);

@@ -25,7 +25,8 @@ export function MiniSplitQuoteForm() {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
+    const form = e.currentTarget; // capture before any await — currentTarget goes null after async
+    const data = Object.fromEntries(new FormData(form).entries());
     const result = schema.safeParse(data);
     if (!result.success) {
       const fe: Record<string, string> = {};
@@ -50,10 +51,11 @@ export function MiniSplitQuoteForm() {
       toast.success("Got it — we'll reach out to confirm details.", {
         description: "Prefer to talk now? Call or text 347-215-1377.",
       });
-      e.currentTarget.reset();
-    } catch {
+      form.reset();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Unknown error";
       toast.error("Something went wrong sending your request.", {
-        description: "Please call or text us directly at 347-215-1377.",
+        description: `${msg} — or call/text us at 347-215-1377.`,
       });
     } finally {
       setSubmitting(false);
