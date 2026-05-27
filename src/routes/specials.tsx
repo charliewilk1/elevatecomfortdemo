@@ -110,17 +110,17 @@ function SpecialsPage() {
         </div>
       </section>
 
-      <section id="quote" className="section-y bg-navy text-white scroll-mt-20">
+      <section id="quote" className="section-y bg-ice/40 scroll-mt-20">
         <div className="container-page grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <div className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-orange">
               <span className="h-px w-6 bg-orange" />
               Lock it in
             </div>
-            <h2 className="text-3xl font-bold sm:text-4xl">
+            <h2 className="text-3xl font-bold text-navy sm:text-4xl">
               Get your mini split quote
             </h2>
-            <p className="mt-4 text-base text-white/70">
+            <p className="mt-4 text-base text-muted-foreground">
               Tell us a bit about the space and we'll confirm pricing,
               timing, and any details specific to your install.
             </p>

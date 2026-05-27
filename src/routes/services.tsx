@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { services } from "@/content/services";
-import { CallNowButton, QuoteButton } from "@/components/ui/cta";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
 
@@ -45,20 +44,14 @@ function ServicesPage() {
           {services.map((s) => (
             <article
               key={s.slug}
-              className="grid gap-6 py-10 first:pt-0 last:pb-0 md:grid-cols-[1fr_auto] md:gap-16"
+              className="py-10 first:pt-0 last:pb-0"
             >
-              <div>
-                <h2 className="text-2xl font-bold text-navy sm:text-3xl">
-                  {s.title}
-                </h2>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  {s.long}
-                </p>
-              </div>
-              <div className="flex shrink-0 flex-col gap-2 sm:flex-row md:flex-col md:w-44">
-                <QuoteButton />
-                <CallNowButton />
-              </div>
+              <h2 className="text-2xl font-bold text-navy sm:text-3xl">
+                {s.title}
+              </h2>
+              <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                {s.long}
+              </p>
             </article>
           ))}
         </div>

@@ -61,19 +61,19 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="section-y bg-navy text-white">
+      <section className="section-y bg-ice/40">
         <div className="container-page max-w-3xl">
-          <h2 className="text-3xl font-bold sm:text-4xl">
+          <h2 className="text-3xl font-bold text-navy sm:text-4xl">
             Our approach
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-white/80 sm:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             We focus on doing the basics well: showing up when we say we will,
             installing systems cleanly, and giving honest recommendations.
             Whether it's a single mini split for a hot bedroom or a full
             heating and cooling job, we treat the work the same way — like
             it's going in our own home.
           </p>
-          <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             If you've got questions before booking, just call or text{" "}
             <a href={site.phoneHref} className="font-bold text-orange hover:underline">
               {site.phone}
