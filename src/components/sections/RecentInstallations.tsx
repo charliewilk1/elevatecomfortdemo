@@ -11,7 +11,7 @@ const photos = [
 
 export function RecentInstallations() {
   return (
-    <section className="section-y">
+    <section className="section-y border-y border-border bg-ice/50">
       <div className="container-page">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -22,10 +22,10 @@ export function RecentInstallations() {
               A quick look at recent AC and mini split work.
             </p>
             <Link
-              to="/contact"
+              to="/services"
               className="mt-2 inline-block text-sm font-semibold text-sky underline-offset-4 hover:underline"
             >
-              See More Installations →
+              See all our services →
             </Link>
           </div>
         </div>

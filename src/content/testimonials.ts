@@ -15,7 +15,7 @@ export const testimonials = [
   {
     quote:
       "They explained everything clearly and did a clean, quality job.",
-    name: "Jessica M.",
+    name: "Shloimy B.",
     location: "Lakewood, NJ",
   },
 ];
