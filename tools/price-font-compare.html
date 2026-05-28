@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Price Font Options — Elevate Comfort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800&family=Space+Grotesk:wght@600;700&family=Inter:wght@700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b2d52;
+      --orange: #d97706;
+      --ice:    #f4f7fb;
+      --border: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f1f5f9;
+      padding: 40px 20px;
+      color: var(--navy);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .card-label {
+      background: var(--ice);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 18px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-label .badge {
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    .card-body {
+      padding: 28px 24px 32px;
+      background: #f8faff;
+    }
+
+    /* Shared section chrome */
+    .offer-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .price-suffix {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--orange);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .fineprint {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    /* ── Font-specific price sizes ── */
+
+    /* A: Oswald — current */
+    .font-oswald       { font-family: 'Oswald', sans-serif; font-weight: 700; }
+    /* B: Bebas Neue */
+    .font-bebas        { font-family: 'Bebas Neue', sans-serif; font-weight: 400; }
+    /* C: Barlow Condensed */
+    .font-barlow       { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; }
+    /* D: Space Grotesk */
+    .font-space        { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+    /* E: Inter heavy — plain but punchy */
+    .font-inter-heavy  { font-family: 'Inter', sans-serif; font-weight: 900; }
+
+    .price-num {
+      font-size: clamp(3rem, 8vw, 4.5rem);
+      line-height: 1;
+      color: var(--navy);
+      letter-spacing: -0.01em;
+    }
+
+    /* Bebas & Barlow look better a touch larger */
+    .font-bebas.price-num  { font-size: clamp(3.2rem, 9vw, 5rem); letter-spacing: 0; }
+    .font-barlow.price-num { font-size: clamp(3rem, 8.5vw, 4.8rem); }
+    /* Space Grotesk & Inter look better slightly smaller (wider letterforms) */
+    .font-space.price-num       { font-size: clamp(2.6rem, 7vw, 4rem); letter-spacing: -0.03em; }
+    .font-inter-heavy.price-num { font-size: clamp(2.5rem, 6.5vw, 3.8rem); letter-spacing: -0.04em; }
+
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--navy);
+    }
+
+    .check-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--orange);
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 0.82rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Price number font options — pick your favourite</h1>
+
+<div class="grid">
+
+  <!-- A: Oswald (current live) -->
+  <div class="card">
+    <div class="card-label">A — Oswald <span class="badge">LIVE NOW</span></div>
+    <div class="card-body">
+      <div class="offer-title">Mini Split Special</div>
+      <div class="price-row">
+        <span class="price-num font-oswald">$2,399</span>
+        <span class="price-suffix">Installed</span>
+      </div>
+      <div class="fineprint">Request a quote to confirm details and availability.</div>
+      <ul class="checklist">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GREE 9/12k BTU mini split system</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Professional installation by our team</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Line set up to 25 ft.</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electrical connection</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wall mounting &amp; setup</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>System test &amp; walkthrough</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- B: Bebas Neue -->
+  <div class="card">
+    <div class="card-label">B — Bebas Neue</div>
+    <div class="card-body">
+      <div class="offer-title">Mini Split Special</div>
+      <div class="price-row">
+        <span class="price-num font-bebas">$2,399</span>
+        <span class="price-suffix">Installed</span>
+      </div>
+      <div class="fineprint">Request a quote to confirm details and availability.</div>
+      <ul class="checklist">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GREE 9/12k BTU mini split system</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Professional installation by our team</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Line set up to 25 ft.</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electrical connection</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wall mounting &amp; setup</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>System test &amp; walkthrough</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- C: Barlow Condensed -->
+  <div class="card">
+    <div class="card-label">C — Barlow Condensed</div>
+    <div class="card-body">
+      <div class="offer-title">Mini Split Special</div>
+      <div class="price-row">
+        <span class="price-num font-barlow">$2,399</span>
+        <span class="price-suffix">Installed</span>
+      </div>
+      <div class="fineprint">Request a quote to confirm details and availability.</div>
+      <ul class="checklist">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GREE 9/12k BTU mini split system</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Professional installation by our team</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Line set up to 25 ft.</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electrical connection</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wall mounting &amp; setup</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>System test &amp; walkthrough</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- D: Space Grotesk -->
+  <div class="card">
+    <div class="card-label">D — Space Grotesk</div>
+    <div class="card-body">
+      <div class="offer-title">Mini Split Special</div>
+      <div class="price-row">
+        <span class="price-num font-space">$2,399</span>
+        <span class="price-suffix">Installed</span>
+      </div>
+      <div class="fineprint">Request a quote to confirm details and availability.</div>
+      <ul class="checklist">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GREE 9/12k BTU mini split system</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Professional installation by our team</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Line set up to 25 ft.</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electrical connection</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wall mounting &amp; setup</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>System test &amp; walkthrough</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- E: Inter Heavy -->
+  <div class="card">
+    <div class="card-label">E — Inter (heavy)</div>
+    <div class="card-body">
+      <div class="offer-title">Mini Split Special</div>
+      <div class="price-row">
+        <span class="price-num font-inter-heavy">$2,399</span>
+        <span class="price-suffix">Installed</span>
+      </div>
+      <div class="fineprint">Request a quote to confirm details and availability.</div>
+      <ul class="checklist">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>GREE 9/12k BTU mini split system</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Professional installation by our team</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Line set up to 25 ft.</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Electrical connection</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wall mounting &amp; setup</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>System test &amp; walkthrough</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<p class="note">Open this file directly in Chrome. Fonts load from Google Fonts so you'll need an internet connection. Tell me A–E and I'll push it live.</p>
+
+</body>
+</html>
