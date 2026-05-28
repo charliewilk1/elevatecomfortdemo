@@ -1,7 +1,8 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { Phone, FileText } from "lucide-react";
 import { site } from "@/content/site";
+import { track } from "@/lib/analytics";
 
 type Variant = "orange" | "navy" | "outline" | "outline-light";
 type Size = "default" | "lg" | "sm";
@@ -53,11 +54,13 @@ export function CtaAnchor({
   className,
   children,
   "aria-label": ariaLabel,
-}: Props & { href: string; "aria-label"?: string }) {
+  onClick,
+}: Props & { href: string; "aria-label"?: string; onClick?: () => void }) {
   return (
     <a
       href={href}
       aria-label={ariaLabel}
+      onClick={onClick}
       className={cn(base, variants[variant], sizes[size], className)}
     >
       {children}
@@ -74,6 +77,7 @@ export function CallNowButton({
   className?: string;
   variant?: Variant;
 }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
     <CtaAnchor
       href={site.phoneHref}
@@ -81,6 +85,7 @@ export function CallNowButton({
       size={size}
       className={className}
       aria-label={`Call ${site.phone}`}
+      onClick={() => track("phone_click", pathname)}
     >
       <Phone className="h-4 w-4" />
       {site.phone}

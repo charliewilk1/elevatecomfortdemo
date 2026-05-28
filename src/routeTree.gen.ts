@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SpecialsRouteImport } from './routes/specials'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as MiniSplitsRouteImport } from './routes/mini-splits'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +25,16 @@ const SpecialsRoute = SpecialsRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MiniSplitsRoute = MiniSplitsRouteImport.update({
+  id: '/mini-splits',
+  path: '/mini-splits',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -45,6 +57,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/mini-splits': typeof MiniSplitsRoute
   '/services': typeof ServicesRoute
   '/specials': typeof SpecialsRoute
 }
@@ -52,6 +66,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/mini-splits': typeof MiniSplitsRoute
   '/services': typeof ServicesRoute
   '/specials': typeof SpecialsRoute
 }
@@ -60,21 +76,47 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/mini-splits': typeof MiniSplitsRoute
   '/services': typeof ServicesRoute
   '/specials': typeof SpecialsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/services' | '/specials'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/dashboard'
+    | '/mini-splits'
+    | '/services'
+    | '/specials'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services' | '/specials'
-  id: '__root__' | '/' | '/about' | '/contact' | '/services' | '/specials'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/dashboard'
+    | '/mini-splits'
+    | '/services'
+    | '/specials'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/dashboard'
+    | '/mini-splits'
+    | '/services'
+    | '/specials'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
+  MiniSplitsRoute: typeof MiniSplitsRoute
   ServicesRoute: typeof ServicesRoute
   SpecialsRoute: typeof SpecialsRoute
 }
@@ -93,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mini-splits': {
+      id: '/mini-splits'
+      path: '/mini-splits'
+      fullPath: '/mini-splits'
+      preLoaderRoute: typeof MiniSplitsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -123,6 +179,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
+  MiniSplitsRoute: MiniSplitsRoute,
   ServicesRoute: ServicesRoute,
   SpecialsRoute: SpecialsRoute,
 }

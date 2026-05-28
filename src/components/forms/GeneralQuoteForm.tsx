@@ -3,6 +3,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { CtaButton } from "@/components/ui/cta";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { track } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -75,6 +76,7 @@ export function GeneralQuoteForm({ defaultService }: { defaultService?: string }
         Timing: result.data.timing,
         Notes: result.data.notes ?? "",
       });
+      track("form_submit", window.location.pathname, { service: result.data.service });
       toast.success("Thanks! We'll be in touch shortly.", {
         description: "Need it faster? Call or text 347-215-1377.",
       });

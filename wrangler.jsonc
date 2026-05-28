@@ -4,4 +4,11 @@
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "elevate-analytics",
+      "database_id": "d0badc71-6b8c-4e33-a47a-a1844d6679e1"
+    }
+  ]
 }

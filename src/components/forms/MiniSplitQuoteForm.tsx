@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { Field, Select, TextArea } from "./GeneralQuoteForm";
 import { CtaButton } from "@/components/ui/cta";
 import { submitToWeb3Forms } from "@/lib/web3forms";
+import { track } from "@/lib/analytics";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -48,6 +49,7 @@ export function MiniSplitQuoteForm() {
         Timing: result.data.timing,
         Notes: result.data.notes ?? "",
       });
+      track("form_submit", window.location.pathname, { service: "mini-splits" });
       toast.success("Got it — we'll reach out to confirm details.", {
         description: "Prefer to talk now? Call or text 347-215-1377.",
       });
