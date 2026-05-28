@@ -4,9 +4,9 @@ import mitsubishiLogo from "@/assets/brands/mitsubishi.png";
 import tclLogo from "@/assets/brands/tcl.svg";
 
 const brands = [
-  { name: "GREE",              logo: greeLogo,        size: "h-14 w-44 sm:h-16 sm:w-52" },
+  { name: "GREE",              logo: greeLogo,        size: "h-28 w-[22rem] sm:h-32 sm:w-[26rem]" },
   { name: "Daikin",            logo: daikinLogo,      size: "h-12 w-36 sm:h-14 sm:w-44" },
-  { name: "Mitsubishi Electric", logo: mitsubishiLogo, size: "h-14 w-44 sm:h-16 sm:w-52" },
+  { name: "Mitsubishi Electric", logo: mitsubishiLogo, size: "h-28 w-[22rem] sm:h-32 sm:w-[26rem]" },
   { name: "TCL",               logo: tclLogo,         size: "h-12 w-36 sm:h-14 sm:w-44" },
 ];
 
