@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { CtaLink } from "@/components/ui/cta";
 import { activeSpecial } from "@/content/offers";
+import { track } from "@/lib/analytics";
 import {
   Thermometer,
   Zap,
@@ -621,7 +622,11 @@ function MiniSplitsPage() {
               </div>
               <p className="mt-5 text-sm text-muted-foreground">
                 Not sure if we cover your area?{" "}
-                <a href="tel:+13472151377" className="font-bold text-orange hover:underline">
+                <a
+                  href="tel:+13472151377"
+                  onClick={() => track("phone_click", "/mini-splits")}
+                  className="font-bold text-orange hover:underline"
+                >
                   Call or text 347-215-1377
                 </a>{" "}
                 — we'll let you know right away.

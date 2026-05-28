@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Phone, MessageSquare, MapPin, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { GeneralQuoteForm } from "@/components/forms/GeneralQuoteForm";
+import { track } from "@/lib/analytics";
 
 const searchSchema = z.object({
   service: z.string().optional().catch(undefined),
@@ -53,6 +54,7 @@ function ContactPage() {
             <div className="space-y-4">
               <a
                 href={site.phoneHref}
+                onClick={() => track("phone_click", "/contact", { method: "call" })}
                 className="card-hover flex items-start gap-4 rounded-2xl border border-border bg-card p-6"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-orange text-white">
@@ -73,6 +75,7 @@ function ContactPage() {
 
               <a
                 href={site.smsHref}
+                onClick={() => track("phone_click", "/contact", { method: "sms" })}
                 className="card-hover flex items-start gap-4 rounded-2xl border border-border bg-card p-6"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy text-white">

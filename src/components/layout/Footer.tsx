@@ -3,6 +3,7 @@ import { Phone } from "lucide-react";
 import logo from "@/assets/logo/logo-stacked-transparent.png";
 import { site } from "@/content/site";
 import { services } from "@/content/services";
+import { track } from "@/lib/analytics";
 
 export function Footer() {
   return (
@@ -19,6 +20,7 @@ export function Footer() {
           </p>
           <a
             href={site.phoneHref}
+            onClick={() => track("phone_click", window.location.pathname, { source: "footer" })}
             className="mt-5 inline-flex items-center gap-2 text-lg font-bold text-white transition-colors hover:text-orange"
           >
             <Phone className="h-5 w-5 text-orange" />

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { site } from "@/content/site";
+import { track } from "@/lib/analytics";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -75,7 +76,11 @@ function AboutPage() {
           </p>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
             If you've got questions before booking, just call or text{" "}
-            <a href={site.phoneHref} className="font-bold text-orange hover:underline">
+            <a
+              href={site.phoneHref}
+              onClick={() => track("phone_click", "/about")}
+              className="font-bold text-orange hover:underline"
+            >
               {site.phone}
             </a>
             . Real person, real answer.
