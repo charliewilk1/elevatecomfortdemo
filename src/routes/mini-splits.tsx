@@ -73,6 +73,20 @@ function MiniSplitsPage() {
         </div>
       </section>
 
+      {/* ── Efficiency teaser strip ──────────────────────────── */}
+      <div className="border-b border-border bg-orange/5 py-5">
+        <div className="container-page flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+          <Zap className="h-5 w-5 shrink-0 text-orange" />
+          <span className="text-base font-bold text-navy">Up to</span>
+          <span className="text-[2.75rem] font-extrabold leading-none text-orange [font-family:'Barlow_Condensed',sans-serif]">
+            30%
+          </span>
+          <span className="text-base font-bold text-navy">
+            cheaper than baseboard heat, central AC &amp; furnace — every month.
+          </span>
+        </div>
+      </div>
+
       {/* ── What is a mini split ──────────────────────────────── */}
       <section className="section-y">
         <div className="container-page">
