@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Intake Form — Wilk Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b2d52;
+      --orange: #d97706;
+      --ice:    #f4f7fb;
+      --border: #e2e8f0;
+      --muted:  #64748b;
+      --card:   #ffffff;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--ice);
+      color: #1e293b;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: var(--navy);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .site-header h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .site-header p {
+      margin-top: 8px;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.95rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 99px;
+      margin-bottom: 12px;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+    }
+
+    /* ── Progress ── */
+    .progress-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 99px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ── Section cards ── */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 28px 32px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .section-card.active { display: block; }
+
+    .section-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .section-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* ── Form fields ── */
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .field label .optional {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: #1e293b;
+      background: #fff;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--navy);
+    }
+    .field textarea { resize: vertical; min-height: 90px; }
+    .field .hint {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 520px) { .field-row { grid-template-columns: 1fr; } }
+
+    /* ── Checkbox / radio groups ── */
+    .check-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .check-group label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      color: #1e293b;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .check-group input { width: auto; }
+    .check-group label:has(input:checked) {
+      border-color: var(--navy);
+      background: #f0f4ff;
+      color: var(--navy);
+    }
+
+    /* ── Service repeater ── */
+    .service-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: var(--ice);
+      position: relative;
+    }
+    .service-item .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+    .service-item .remove-btn:hover { color: #dc2626; }
+    .add-service-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px dashed var(--border);
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .add-service-btn:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ── Navigation buttons ── */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 28px;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--navy); color: #fff; }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-secondary {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+    }
+    .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-orange { background: var(--orange); color: #fff; }
+    .btn-orange:hover { opacity: 0.9; }
+    .step-indicator {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── Summary / output ── */
+    #summary-section { display: none; }
+    #summary-section.active { display: block; }
+    .summary-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: var(--radius);
+      padding: 24px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 480px;
+      overflow-y: auto;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 10px 20px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .copy-btn:hover { opacity: 0.9; }
+    .copy-btn.copied { background: #16a34a; }
+
+    .submit-status {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .submit-status.success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .submit-status.error   { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .note-box {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #92400e;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="header-badge">New Client Onboarding</div>
+  <h1>Website Intake Form</h1>
+  <p>Fill this out as completely as you can — the more detail you give, the faster and more accurately we can build your site.</p>
+</div>
+
+<div class="container">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- ── Section 1: Business Basics ─────────────────────────────────── -->
+  <div class="section-card active" data-section="1">
+    <div class="section-number">Section 1 of 8</div>
+    <div class="section-title">Business Basics</div>
+    <div class="section-desc">The foundational info that goes on every page.</div>
+
+    <div class="field"><label>Business name</label>
+      <input type="text" id="biz_name" placeholder="e.g. Acme Heating & Cooling" /></div>
+
+    <div class="field-row">
+      <div class="field"><label>Phone number</label>
+        <input type="tel" id="biz_phone" placeholder="e.g. 347-215-1377" /></div>
+      <div class="field"><label>Business email</label>
+        <input type="email" id="biz_email" placeholder="info@yourbusiness.com" /></div>
+    </div>
+
+    <div class="field"><label>Current website <span class="optional">(if any)</span></label>
+      <input type="url" id="biz_website" placeholder="https://..." /></div>
+
+    <div class="field"><label>City / borough / neighborhood you're based in</label>
+      <input type="text" id="biz_city" placeholder="e.g. Brooklyn, NY" /></div>
+
+    <div class="field"><label>Service area <span class="optional">(where you work)</span></label>
+      <input type="text" id="biz_area" placeholder="e.g. All 5 boroughs, Long Island, Northern NJ" /></div>
+
+    <div class="field"><label>One-sentence description of the business</label>
+      <input type="text" id="biz_tagline" placeholder="e.g. We install and service mini splits and HVAC across the Tri-State Area." /></div>
+
+    <div class="field-row">
+      <div class="field"><label>Industry / trade</label>
+        <input type="text" id="biz_industry" placeholder="e.g. HVAC, Plumbing, Electrical…" /></div>
+      <div class="field"><label>Years in business</label>
+        <input type="text" id="biz_years" placeholder="e.g. 8 years" /></div>
+    </div>
+
+    <div class="field"><label>Social media links <span class="optional">(paste any that exist — one per line)</span></label>
+      <textarea id="biz_social" rows="3" placeholder="Instagram: https://&#10;Facebook: https://&#10;Google Business: https://"></textarea></div>
+
+    <div class="nav-row">
+      <span></span>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator" id="stepIndicator1">Step 1 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(1)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 2: Services ─────────────────────────────────────────── -->
+  <div class="section-card" data-section="2">
+    <div class="section-number">Section 2 of 8</div>
+    <div class="section-title">Your Services</div>
+    <div class="section-desc">List everything you offer. Each service gets its own card on the site. Start with your main service — the one that makes up most of your work.</div>
+
+    <div id="servicesContainer">
+      <div class="service-item" data-idx="0">
+        <strong style="font-size:0.8rem;color:var(--navy);text-transform:uppercase;letter-spacing:.1em">Service 1 — Primary</strong>
+        <div class="field" style="margin-top:12px"><label>Service name</label>
+          <input type="text" class="svc-name" placeholder="e.g. Mini Split Installation & Service" /></div>
+        <div class="field"><label>Short description <span class="optional">(1 sentence)</span></label>
+          <input type="text" class="svc-short" placeholder="e.g. Ductless comfort for any room — installed clean, quiet." /></div>
+        <div class="field"><label>Full description <span class="optional">(2–4 sentences — what do you actually do?)</span></label>
+          <textarea class="svc-long" rows="3" placeholder="Describe what the job involves, who it's for, and what makes your work stand out."></textarea></div>
+        <div class="field"><label>Starting price <span class="optional">(optional — leave blank if varies)</span></label>
+          <input type="text" class="svc-price" placeholder="e.g. From $2,399 installed" /></div>
+      </div>
+    </div>
+    <button class="add-service-btn" onclick="addService()">+ Add another service</button>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(2)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 2 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(2)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 3: Your Story ──────────────────────────────────────── -->
+  <div class="section-card" data-section="3">
+    <div class="section-number">Section 3 of 8</div>
+    <div class="section-title">Your Story & Differentiators</div>
+    <div class="section-desc">This is the "About" content. Be specific — generic answers produce generic copy.</div>
+
+    <div class="field"><label>How did the business start? <span class="optional">(brief story)</span></label>
+      <textarea id="story_how" rows="4" placeholder="e.g. I started in 2016 after 10 years working for a large HVAC company. I wanted to do the work properly with fair pricing, not upsell everything."></textarea></div>
+
+    <div class="field"><label>What makes you different from competitors?</label>
+      <textarea id="story_diff" rows="3" placeholder="e.g. We specialize in mini splits only — we're not generalists. No subcontractors, same crew every time. Honest quotes, no pressure."></textarea></div>
+
+    <div class="field"><label>Who is your ideal customer?</label>
+      <input type="text" id="story_customer" placeholder="e.g. Homeowners in NYC apartments without ductwork, small landlords, condo owners" /></div>
+
+    <div class="field"><label>Team size <span class="optional">(roughly)</span></label>
+      <input type="text" id="story_team" placeholder="e.g. 2 full-time installers + me" /></div>
+
+    <div class="field"><label>Licenses, certifications, or affiliations <span class="optional">(if any)</span></label>
+      <textarea id="story_certs" rows="2" placeholder="e.g. EPA 608 certified, licensed in NY & NJ, GREE authorized dealer"></textarea></div>
+
+    <div class="field"><label>Any awards, press coverage, or notable clients? <span class="optional">(optional)</span></label>
+      <textarea id="story_awards" rows="2" placeholder="e.g. Featured in Brooklyn Magazine 2023, installed systems in 3 schools"></textarea></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(3)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 3 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(3)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 4: Branding ────────────────────────────────────────── -->
+  <div class="section-card" data-section="4">
+    <div class="section-number">Section 4 of 8</div>
+    <div class="section-title">Branding & Visual Style</div>
+    <div class="section-desc">If you don't have a logo or colors yet, we'll handle it. Just answer what you can.</div>
+
+    <div class="field"><label>Do you have a logo?</label>
+      <div class="check-group">
+        <label><input type="radio" name="has_logo" value="Yes — I'll upload it" /> Yes — I'll upload it</label>
+        <label><input type="radio" name="has_logo" value="Yes but needs updating" /> Yes but needs updating</label>
+        <label><input type="radio" name="has_logo" value="No — need one built" /> No — need one built</label>
+      </div>
+    </div>
+
+    <div class="field"><label>Brand colors <span class="optional">(hex codes or describe)</span></label>
+      <input type="text" id="brand_colors" placeholder="e.g. Dark navy #1b2d52 and orange #d97706 — or 'not sure, open to suggestions'" /></div>
+
+    <div class="field"><label>Visual style — pick everything that fits</label>
+      <div class="check-group" id="styleGroup">
+        <label><input type="checkbox" value="Clean & minimal" /> Clean & minimal</label>
+        <label><input type="checkbox" value="Bold & high-contrast" /> Bold & high-contrast</label>
+        <label><input type="checkbox" value="Professional & corporate" /> Professional & corporate</label>
+        <label><input type="checkbox" value="Friendly & approachable" /> Friendly & approachable</label>
+        <label><input type="checkbox" value="Modern & tech-forward" /> Modern & tech-forward</label>
+        <label><input type="checkbox" value="Rugged & trade-oriented" /> Rugged & trade-oriented</label>
+        <label><input type="checkbox" value="Premium / high-end feel" /> Premium / high-end feel</label>
+      </div>
+    </div>
+
+    <div class="field"><label>2–3 websites you like the look of <span class="optional">(can be any industry)</span></label>
+      <textarea id="brand_inspo" rows="3" placeholder="Paste URLs, one per line. Tell us briefly what you like about each one (layout, colors, vibe)."></textarea></div>
+
+    <div class="field"><label>Anything you definitely DON'T want? <span class="optional">(optional)</span></label>
+      <input type="text" id="brand_dont" placeholder="e.g. No dark backgrounds, no clip art, nothing too 'salesy'" /></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(4)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 4 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(4)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 5: Social Proof ────────────────────────────────────── -->
+  <div class="section-card" data-section="5">
+    <div class="section-number">Section 5 of 8</div>
+    <div class="section-title">Reviews & Social Proof</div>
+    <div class="section-desc">This directly affects how much visitors trust the site before contacting you.</div>
+
+    <div class="field"><label>Google Business Profile link <span class="optional">(if you have one)</span></label>
+      <input type="url" id="proof_google" placeholder="https://maps.google.com/..." /></div>
+
+    <div class="field"><label>Paste 2–3 of your best reviews here <span class="optional">(copy from Google/Yelp)</span></label>
+      <textarea id="proof_reviews" rows="6" placeholder="Review 1: &#34;Amazing work, showed up on time and the install was spotless. Would recommend to anyone.&#34; — John D., Brooklyn&#10;&#10;Review 2: ..."></textarea></div>
+
+    <div class="field"><label>Any stats or numbers worth showing? <span class="optional">(optional)</span></label>
+      <textarea id="proof_stats" rows="2" placeholder="e.g. 200+ installs completed, 8 years in business, 97% of customers refer us to friends"></textarea></div>
+
+    <div class="field"><label>Brands or equipment you work with / are certified for</label>
+      <input type="text" id="proof_brands" placeholder="e.g. GREE (authorized dealer), Mitsubishi, LG, Carrier" /></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(5)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 5 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(5)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 6: Photos & Assets ────────────────────────────────── -->
+  <div class="section-card" data-section="6">
+    <div class="section-number">Section 6 of 8</div>
+    <div class="section-title">Photos & Assets</div>
+    <div class="section-desc">Photos are the single biggest factor in how professional a site looks. Don't skip this — even phone photos of real work beat stock images.</div>
+
+    <div class="note-box">
+      📁 <strong>How to share photos:</strong> Upload everything to a shared Google Drive or Dropbox folder and paste the link below. Include full-resolution originals — we'll handle cropping/optimization. Label folders if you can: "work photos", "team", "logo files", etc.
+    </div>
+
+    <div class="field"><label>Google Drive / Dropbox / WeTransfer link</label>
+      <input type="url" id="assets_link" placeholder="https://drive.google.com/..." /></div>
+
+    <div class="field"><label>What photos do you have? Check everything that applies.</label>
+      <div class="check-group" id="photoGroup">
+        <label><input type="checkbox" value="Completed job photos" /> Completed job photos</label>
+        <label><input type="checkbox" value="Before & after" /> Before & after</label>
+        <label><input type="checkbox" value="Team / crew photo" /> Team / crew photo</label>
+        <label><input type="checkbox" value="Truck / van / equipment" /> Truck / van / equipment</label>
+        <label><input type="checkbox" value="Logo files (PNG/SVG)" /> Logo files (PNG/SVG)</label>
+        <label><input type="checkbox" value="Product photos" /> Product photos</label>
+        <label><input type="checkbox" value="Nothing yet" /> Nothing yet</label>
+      </div>
+    </div>
+
+    <div class="field"><label>Anything specific to point out in the photos? <span class="optional">(optional)</span></label>
+      <textarea id="assets_notes" rows="2" placeholder="e.g. The bedroom install photo is our best one, use that front and center. The team photo is from 2021 so team has grown since."></textarea></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(6)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 6 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(6)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 7: Competitors & References ────────────────────────── -->
+  <div class="section-card" data-section="7">
+    <div class="section-number">Section 7 of 8</div>
+    <div class="section-title">Competitors & References</div>
+    <div class="section-desc">Helps us understand the landscape and make sure your site stands out.</div>
+
+    <div class="field"><label>Name 2–3 direct competitors <span class="optional">(and their websites if you know them)</span></label>
+      <textarea id="comp_list" rows="3" placeholder="1. ABC Heating — abcheating.com&#10;2. XYZ HVAC — xyzhvac.com&#10;3. ..."></textarea></div>
+
+    <div class="field"><label>What do competitors do well that you want to match or beat?</label>
+      <textarea id="comp_good" rows="2" placeholder="e.g. ABC has great before/after photos. XYZ has clear pricing on their site."></textarea></div>
+
+    <div class="field"><label>Where do YOU have an advantage over them?</label>
+      <textarea id="comp_edge" rows="2" placeholder="e.g. We're faster, more responsive, specialize instead of doing everything, lower overhead so better prices."></textarea></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(7)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 7 of 8</span>
+        <button class="btn btn-primary" onclick="nextSection(7)">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Section 8: Goals & Technical ──────────────────────────────── -->
+  <div class="section-card" data-section="8">
+    <div class="section-number">Section 8 of 8</div>
+    <div class="section-title">Goals & Technical Details</div>
+    <div class="section-desc">Last section — almost done.</div>
+
+    <div class="field"><label>Primary goal of the website</label>
+      <div class="check-group" id="goalGroup">
+        <label><input type="radio" name="goal" value="Generate leads / quote requests" /> Generate leads / quote requests</label>
+        <label><input type="radio" name="goal" value="Get more phone calls" /> Get more phone calls</label>
+        <label><input type="radio" name="goal" value="Build credibility / look professional" /> Build credibility / look professional</label>
+        <label><input type="radio" name="goal" value="Replace outdated site" /> Replace outdated site</label>
+        <label><input type="radio" name="goal" value="All of the above" /> All of the above</label>
+      </div>
+    </div>
+
+    <div class="field"><label>Do you have a domain name already?</label>
+      <input type="text" id="tech_domain" placeholder="e.g. acmehvac.com (yes) — or 'not yet'" /></div>
+
+    <div class="field"><label>Any specific pages you know you need? <span class="optional">(beyond the basics)</span></label>
+      <textarea id="tech_pages" rows="2" placeholder="e.g. Financing page, photo gallery, booking calendar, FAQ, Spanish language version"></textarea></div>
+
+    <div class="field"><label>Target launch date <span class="optional">(rough)</span></label>
+      <input type="text" id="tech_launch" placeholder="e.g. ASAP, within 3 weeks, by end of August" /></div>
+
+    <div class="field"><label>Budget range <span class="optional">(optional but helpful)</span></label>
+      <input type="text" id="tech_budget" placeholder="e.g. $1,500–$3,000 — or 'flexible, let's talk'" /></div>
+
+    <div class="field"><label>Anything else we should know? <span class="optional">(optional)</span></label>
+      <textarea id="tech_notes" rows="3" placeholder="Any details, preferences, concerns, or context that doesn't fit anywhere else."></textarea></div>
+
+    <hr class="section-divider" />
+
+    <div class="field"><label>Your name <span class="optional">(person filling this out)</span></label>
+      <input type="text" id="submitter_name" placeholder="First and last name" /></div>
+    <div class="field"><label>Your email <span class="optional">(for confirmation)</span></label>
+      <input type="email" id="submitter_email" placeholder="your@email.com" /></div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="prevSection(8)">← Back</button>
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="step-indicator">Step 8 of 8</span>
+        <button class="btn btn-orange" onclick="submitForm()">Submit & Generate Summary ✓</button>
+      </div>
+    </div>
+
+    <div id="submitStatus"></div>
+  </div>
+
+  <!-- ── Summary output ─────────────────────────────────────────────── -->
+  <div id="summary-section">
+    <div class="section-card active" style="display:block">
+      <div class="section-number">Done!</div>
+      <div class="section-title">Your intake is complete 🎉</div>
+      <div class="section-desc">A copy was sent to your email. Below is a formatted summary — copy it and paste it into a Claude conversation to start building the site immediately.</div>
+
+      <pre class="summary-box" id="summaryOutput"></pre>
+
+      <button class="copy-btn" id="copyBtn" onclick="copySummary()">
+        📋 Copy Claude-ready summary
+      </button>
+      <p style="margin-top:14px;font-size:0.8rem;color:var(--muted)">Paste this into Claude and say: <em>"Build me a website using this client intake."</em></p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────
+const TOTAL_SECTIONS = 8;
+let currentSection = 1;
+let serviceCount = 1;
+
+// ── Navigation ──────────────────────────────────────────────────────────
+function showSection(n) {
+  document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+  const target = document.querySelector(`[data-section="${n}"]`);
+  if (target) target.classList.add('active');
+  currentSection = n;
+  updateProgress();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextSection(n) { if (n < TOTAL_SECTIONS) showSection(n + 1); }
+function prevSection(n) { if (n > 1) showSection(n - 1); }
+
+function updateProgress() {
+  const pct = ((currentSection - 1) / TOTAL_SECTIONS) * 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ── Services repeater ──────────────────────────────────────────────────
+function addService() {
+  serviceCount++;
+  const container = document.getElementById('servicesContainer');
+  const div = document.createElement('div');
+  div.className = 'service-item';
+  div.dataset.idx = serviceCount;
+  div.innerHTML = `
+    <button class="remove-btn" onclick="this.parentElement.remove()">✕</button>
+    <strong style="font-size:0.8rem;color:var(--navy);text-transform:uppercase;letter-spacing:.1em">Service ${serviceCount}</strong>
+    <div class="field" style="margin-top:12px"><label>Service name</label>
+      <input type="text" class="svc-name" placeholder="e.g. Central AC Installation" /></div>
+    <div class="field"><label>Short description <span class="optional">(1 sentence)</span></label>
+      <input type="text" class="svc-short" placeholder="Brief tagline" /></div>
+    <div class="field"><label>Full description <span class="optional">(2–4 sentences)</span></label>
+      <textarea class="svc-long" rows="3" placeholder="What does this service involve?"></textarea></div>
+    <div class="field"><label>Starting price <span class="optional">(optional)</span></label>
+      <input type="text" class="svc-price" placeholder="e.g. From $1,800 installed" /></div>
+  `;
+  container.appendChild(div);
+}
+
+// ── Collect all services ────────────────────────────────────────────────
+function collectServices() {
+  const items = document.querySelectorAll('.service-item');
+  const out = [];
+  items.forEach((item, i) => {
+    const name  = item.querySelector('.svc-name')?.value?.trim() || '';
+    const short = item.querySelector('.svc-short')?.value?.trim() || '';
+    const long  = item.querySelector('.svc-long')?.value?.trim() || '';
+    const price = item.querySelector('.svc-price')?.value?.trim() || '';
+    if (name) out.push({ index: i + 1, name, short, long, price });
+  });
+  return out;
+}
+
+// ── Collect checkboxes ──────────────────────────────────────────────────
+function collectChecks(groupId) {
+  return Array.from(document.querySelectorAll(`#${groupId} input:checked`))
+    .map(el => el.value).join(', ') || 'Not specified';
+}
+function collectRadio(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : 'Not specified';
+}
+
+// ── Build summary ────────────────────────────────────────────────────────
+function buildSummary() {
+  const v = id => (document.getElementById(id)?.value?.trim() || '');
+  const services = collectServices();
+
+  let md = `# CLIENT INTAKE FORM
+## ${v('biz_name') || 'Unnamed Business'}
+Generated: ${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+Submitted by: ${v('submitter_name')} <${v('submitter_email')}>
+
+---
+
+## 1. BUSINESS BASICS
+- Business name: ${v('biz_name')}
+- Phone: ${v('biz_phone')}
+- Email: ${v('biz_email')}
+- Current website: ${v('biz_website') || 'None'}
+- City/base: ${v('biz_city')}
+- Service area: ${v('biz_area')}
+- One-sentence description: ${v('biz_tagline')}
+- Industry: ${v('biz_industry')}
+- Years in business: ${v('biz_years')}
+- Social media:
+${v('biz_social') ? v('biz_social').split('\n').map(l => '  ' + l).join('\n') : '  (none provided)'}
+
+---
+
+## 2. SERVICES
+`;
+  services.forEach(s => {
+    md += `
+### Service ${s.index}: ${s.name}
+- Short: ${s.short}
+- Full description: ${s.long}
+- Pricing: ${s.price || 'Not specified'}
+`;
+  });
+
+  md += `
+---
+
+## 3. STORY & DIFFERENTIATORS
+- How it started: ${v('story_how')}
+- What makes them different: ${v('story_diff')}
+- Ideal customer: ${v('story_customer')}
+- Team size: ${v('story_team')}
+- Licenses / certifications: ${v('story_certs')}
+- Awards / press / notable clients: ${v('story_awards') || 'None'}
+
+---
+
+## 4. BRANDING
+- Has logo: ${collectRadio('has_logo')}
+- Brand colors: ${v('brand_colors')}
+- Visual style preferences: ${collectChecks('styleGroup')}
+- Websites they like: ${v('brand_inspo')}
+- What to avoid: ${v('brand_dont') || 'Nothing specified'}
+
+---
+
+## 5. SOCIAL PROOF
+- Google Business link: ${v('proof_google') || 'Not provided'}
+- Reviews:
+${v('proof_reviews') ? v('proof_reviews').split('\n').map(l => '  ' + l).join('\n') : '  (none provided)'}
+- Stats/numbers: ${v('proof_stats') || 'None provided'}
+- Brands/certifications: ${v('proof_brands')}
+
+---
+
+## 6. PHOTOS & ASSETS
+- Shared folder link: ${v('assets_link') || 'NOT PROVIDED — follow up'}
+- Photo types available: ${collectChecks('photoGroup')}
+- Notes on photos: ${v('assets_notes') || 'None'}
+
+---
+
+## 7. COMPETITORS
+- Competitors:
+${v('comp_list') ? v('comp_list').split('\n').map(l => '  ' + l).join('\n') : '  (none listed)'}
+- What competitors do well: ${v('comp_good')}
+- Client's competitive edge: ${v('comp_edge')}
+
+---
+
+## 8. GOALS & TECHNICAL
+- Primary goal: ${collectRadio('goal')}
+- Domain: ${v('tech_domain') || 'None yet'}
+- Specific pages needed: ${v('tech_pages') || 'Standard pages'}
+- Target launch: ${v('tech_launch') || 'Not specified'}
+- Budget: ${v('tech_budget') || 'Not specified'}
+- Additional notes: ${v('tech_notes') || 'None'}
+
+---
+END OF INTAKE
+`;
+  return md;
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────
+async function submitForm() {
+  const v = id => (document.getElementById(id)?.value?.trim() || '');
+  const statusEl = document.getElementById('submitStatus');
+  const btn = document.querySelector('[onclick="submitForm()"]');
+
+  if (!v('biz_name')) {
+    statusEl.className = 'submit-status error';
+    statusEl.textContent = 'Please fill in at least the business name before submitting.';
+    return;
+  }
+
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  const summary = buildSummary();
+
+  // Send via Web3Forms — swap the key for your own
+  const WEB3FORMS_KEY = '3f9c84ae-8baa-4857-b6d6-2ec57e12fa51';
+  let emailSent = false;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_KEY,
+        subject: `New Client Intake — ${v('biz_name')}`,
+        from_name: v('submitter_name') || v('biz_name'),
+        message: summary,
+        botcheck: false,
+      }),
+    });
+    const json = await res.json();
+    emailSent = json.success;
+  } catch (e) {
+    console.warn('Email send failed:', e);
+  }
+
+  // Show summary regardless of email result
+  document.getElementById('summaryOutput').textContent = summary;
+  document.querySelectorAll('.section-card').forEach(el => el.style.display = 'none');
+  document.getElementById('summary-section').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (!emailSent && WEB3FORMS_KEY === 'YOUR_KEY_HERE') {
+    console.info('Web3Forms key not configured — email not sent. Set WEB3FORMS_KEY in the script.');
+  }
+}
+
+// ── Copy summary ──────────────────────────────────────────────────────────
+function copySummary() {
+  const text = document.getElementById('summaryOutput').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Claude-ready summary';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+// Init progress
+updateProgress();
+</script>
+</body>
+</html>
