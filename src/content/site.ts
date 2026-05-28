@@ -10,6 +10,7 @@ export const site = {
   nav: [
     { to: "/", label: "Home" },
     { to: "/services", label: "Services" },
+    { to: "/mini-splits", label: "Mini Splits" },
     { to: "/specials", label: "Specials" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },

@@ -7,7 +7,7 @@ type Variant = "orange" | "navy" | "outline" | "outline-light";
 type Size = "default" | "lg" | "sm";
 
 const base =
-  "inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky";
+  "inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky";
 
 const variants: Record<Variant, string> = {
   orange:
