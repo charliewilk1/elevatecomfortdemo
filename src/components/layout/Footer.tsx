@@ -6,7 +6,7 @@ import { services } from "@/content/services";
 
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-border bg-navy text-white">
+    <footer className="border-t border-border bg-navy text-white">
       <div className="container-page grid gap-12 py-16 md:grid-cols-12">
         <div className="md:col-span-4">
           <img
