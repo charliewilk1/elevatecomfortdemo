@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { CallNowButton, CtaButton } from "@/components/ui/cta";
+import { CtaButton } from "@/components/ui/cta";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const schema = z.object({
@@ -115,11 +115,10 @@ export function GeneralQuoteForm({ defaultService }: { defaultService?: string }
         placeholder="Tell us about the space, photos welcome later by text."
       />
 
-      <div className="flex flex-wrap gap-3 pt-2">
+      <div className="flex justify-center pt-2">
         <CtaButton type="submit" disabled={submitting}>
           {submitting ? "Sending..." : "Request a Quote"}
         </CtaButton>
-        <CallNowButton size="lg" variant="navy" />
       </div>
     </form>
   );

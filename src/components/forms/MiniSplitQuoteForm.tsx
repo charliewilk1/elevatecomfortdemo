@@ -2,7 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Field, Select, TextArea } from "./GeneralQuoteForm";
-import { CallNowButton, CtaButton } from "@/components/ui/cta";
+import { CtaButton } from "@/components/ui/cta";
 import { submitToWeb3Forms } from "@/lib/web3forms";
 
 const schema = z.object({
@@ -75,11 +75,10 @@ export function MiniSplitQuoteForm() {
         name="notes"
         placeholder="Tell us about the space. Photos welcome later by text."
       />
-      <div className="flex flex-wrap gap-3 pt-2">
+      <div className="flex justify-center pt-2">
         <CtaButton type="submit" disabled={submitting}>
           {submitting ? "Sending..." : "Request Mini Split Quote"}
         </CtaButton>
-        <CallNowButton size="lg" variant="navy" />
       </div>
     </form>
   );
