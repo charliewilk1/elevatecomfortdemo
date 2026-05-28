@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import img1 from "@/assets/installs/picsforwebsite/IMG_1310.jpeg";
-import img2 from "@/assets/installs/picsforwebsite/IMG_0778.jpeg";
-import img3 from "@/assets/installs/picsforwebsite/Image 6.jpeg";
+import img1 from "@/assets/installs/mini-split-basement.jpg";
+import img2 from "@/assets/installs/mini-split-sunroom.jpg";
+import img3 from "@/assets/installs/baseboard-heater.jpg";
 
 const photos = [
   { src: img1, alt: "GREE mini split cleanly installed in a basement bedroom" },

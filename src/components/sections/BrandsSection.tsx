@@ -17,7 +17,7 @@ export function BrandsSection() {
         <p className="mb-8 text-center text-xs font-bold uppercase tracking-widest text-navy/40">
           Brands We Work With
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-14">
+        <div className="flex flex-wrap items-center justify-center gap-16 sm:gap-20">
           {brands.map((b) => (
             <div key={b.name} className="flex h-14 w-36 items-center justify-center overflow-hidden sm:h-16 sm:w-44">
               <img

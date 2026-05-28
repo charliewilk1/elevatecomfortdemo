@@ -17,7 +17,7 @@ import {
   Award,
   MapPin,
 } from "lucide-react";
-import bedroomImg from "@/assets/installs/picsforwebsite/IMG_1310.jpeg";
+import bedroomImg from "@/assets/installs/mini-split-basement.jpg";
 import stackedImg from "@/assets/installs/client-units-stacked.jpg";
 
 export const Route = createFileRoute("/mini-splits")({
