@@ -26,7 +26,7 @@ const pillars = [
   { title: "Professional Service", desc: "Trained, on time, and respectful of your home or space." },
   { title: "Clear Communication", desc: "Straight answers — no upsells, no surprises." },
   { title: "Clean Installation", desc: "Tidy line sets, secure mounting, no mess left behind." },
-  { title: "Local Service Feel", desc: "Small local outfit serving the Tri-State Area." },
+  { title: "Local Service Feel", desc: "HVAC team serving the Tri-State Area." },
 ];
 
 function AboutPage() {
@@ -38,12 +38,12 @@ function AboutPage() {
             About us
           </div>
           <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
-            Small crew.
+            Trained crew.
             <br />
             <span className="text-orange">Real work.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            We're a small HVAC outfit in the Tri-State Area — mini splits are our
+            We're a trained HVAC crew in the Tri-State Area — mini splits are our
             main thing, but we handle AC and heating too.
           </p>
         </div>

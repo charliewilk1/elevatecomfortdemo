@@ -14,19 +14,19 @@ export function BrandsSection() {
   return (
     <section className="border-y border-border py-10">
       <div className="container-page">
-        <p className="mb-6 text-center text-xs font-bold uppercase tracking-widest text-navy/40">
+        <p className="mb-8 text-center text-xs font-bold uppercase tracking-widest text-navy/40">
           Brands We Work With
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-16">
+        <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-14">
           {brands.map((b) => (
-            <div key={b.name} className="flex h-10 w-28 items-center justify-center sm:h-12 sm:w-32">
+            <div key={b.name} className="flex h-12 w-36 items-center justify-center sm:h-14 sm:w-44">
               <img
                 src={b.logo}
                 alt={`${b.name} logo`}
                 loading="lazy"
                 width={240}
                 height={80}
-                className="max-h-full max-w-full object-contain opacity-60 grayscale"
+                className="max-h-full max-w-full object-contain"
               />
             </div>
           ))}
