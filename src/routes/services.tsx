@@ -3,19 +3,19 @@ import { services } from "@/content/services";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
 import { CtaAnchor } from "@/components/ui/cta";
-import miniSplitImg from "@/assets/installs/mini-split-wall.jpg";
-import acImg from "@/assets/installs/outdoor-condenser.jpg";
-import heatingImg from "@/assets/installs/bedroom-install.jpg";
-import heroImg from "@/assets/hero-image.jpg";
+import bedroomImg      from "@/assets/installs/client-bedroom.jpg";
+import stackedImg      from "@/assets/installs/client-units-stacked.jpg";
+import buildingImg     from "@/assets/installs/client-building.jpg";
+import productImg      from "@/assets/installs/client-gree-product.jpg";
+import heroImg         from "@/assets/hero-image.jpg";
 
-// Placeholder mapping — replace values with real photos when available
 const photoMap: Record<string, string> = {
-  "mini-splits":        miniSplitImg,   // ✓ real photo
-  "central-ac":         acImg,          // ✓ real photo
-  "furnace":            heatingImg,     // ⚠ placeholder
-  "electric-heating":   heroImg,        // ⚠ placeholder
-  "baseboard-heating":  heatingImg,     // ⚠ placeholder
-  "wall-unit-removal":  acImg,          // ⚠ placeholder
+  "mini-splits":        bedroomImg,     // ✓ real client — bedroom GREE install
+  "central-ac":         buildingImg,    // ✓ real client — building exterior multi-unit
+  "furnace":            stackedImg,     // ✓ real client — stacked GREE units
+  "electric-heating":   productImg,     // ✓ real client — GREE product shot
+  "baseboard-heating":  bedroomImg,     // ✓ real client — bedroom install
+  "wall-unit-removal":  stackedImg,     // ✓ real client — stacked outdoor units
 };
 
 export const Route = createFileRoute("/services")({
