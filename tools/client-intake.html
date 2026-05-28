@@ -774,6 +774,9 @@ function showSection(n) {
   if (target) target.classList.add('active');
   currentSection = n;
   updateProgress();
+  // Hide the smart import panel once the user moves past section 1
+  const importCard = document.getElementById('smartImportCard');
+  if (importCard) importCard.style.display = n === 1 ? '' : 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
