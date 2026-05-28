@@ -9,6 +9,7 @@ export type Offer = {
 };
 
 // Swap this object to change the homepage offer.
+// Set activeSpecial to null when no promotion is running.
 export const currentOffer: Offer = {
   id: "mini-split-2399",
   title: "Mini Split Special",
@@ -19,3 +20,7 @@ export const currentOffer: Offer = {
   fineprint: "Request a quote to confirm details and availability.",
   ctaPath: "/specials",
 };
+
+// Controls whether the mini splits page CTA points to /specials or /contact.
+// Set to null to disable the special and revert to the generic quote form.
+export const activeSpecial: Offer | null = currentOffer;

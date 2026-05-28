@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { services } from "@/content/services";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { SimpleStartToFinish } from "@/components/sections/SimpleStartToFinish";
@@ -81,6 +81,16 @@ function ServicesPage() {
                   <p className="mt-4 text-base leading-relaxed text-muted-foreground">
                     {s.long}
                   </p>
+                  {s.slug === "mini-splits" && (
+                    <p className="mt-3 text-sm">
+                      <Link
+                        to="/mini-splits"
+                        className="font-bold text-navy underline underline-offset-4 hover:text-orange transition-colors"
+                      >
+                        What is a mini split? →
+                      </Link>
+                    </p>
+                  )}
                   <div className="mt-6">
                     <CtaAnchor
                       href={`/contact?service=${s.slug}`}

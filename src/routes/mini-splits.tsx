@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { CtaLink } from "@/components/ui/cta";
+import { activeSpecial } from "@/content/offers";
 import {
   Thermometer,
   Zap,
@@ -61,8 +62,8 @@ function MiniSplitsPage() {
             in the Tri-State Area.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <CtaLink to="/contact?service=mini-splits" variant="orange" size="lg">
-              Get a Free Quote
+            <CtaLink to={activeSpecial ? activeSpecial.ctaPath : "/contact?service=mini-splits"} variant="orange" size="lg">
+              {activeSpecial ? "See Current Special" : "Get a Free Quote"}
             </CtaLink>
             <CtaLink to="/services#mini-splits" variant="outline" size="lg">
               See Our Services
@@ -432,22 +433,22 @@ function MiniSplitsPage() {
                       {
                         type: "Single-zone (1 room)",
                         industry: "$3,000–$5,000",
-                        ours: "From $1,400",
+                        ours: "From $2,399",
                       },
                       {
                         type: "Dual-zone (2 rooms)",
-                        industry: "$5,000–$9,000",
-                        ours: "From $2,600",
+                        industry: "$5,500–$9,000",
+                        ours: "From $4,400",
                       },
                       {
                         type: "Tri-zone (3 rooms)",
-                        industry: "$8,000–$14,000",
-                        ours: "From $3,800",
+                        industry: "$9,000–$14,000",
+                        ours: "From $6,200",
                       },
                       {
                         type: "Quad-zone (4 rooms)",
-                        industry: "$12,000–$20,000",
-                        ours: "From $5,200",
+                        industry: "$13,000–$20,000",
+                        ours: "From $8,000",
                       },
                     ].map((row, i) => (
                       <tr
@@ -521,11 +522,11 @@ function MiniSplitsPage() {
 
               <div className="mt-6 pt-2">
                 <CtaLink
-                  to="/contact?service=mini-splits"
+                  to={activeSpecial ? activeSpecial.ctaPath : "/contact?service=mini-splits"}
                   variant="orange"
                   size="lg"
                 >
-                  Get a Free Quote
+                  {activeSpecial ? "See Current Special" : "Get a Free Quote"}
                 </CtaLink>
               </div>
             </div>
