@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import img1 from "@/assets/installs/outdoor-condenser.jpg";
-import img2 from "@/assets/installs/mini-split-wall.jpg";
-import img3 from "@/assets/installs/bedroom-install.jpg";
+import img1 from "@/assets/installs/picsforwebsite/IMG_1310.jpeg";
+import img2 from "@/assets/installs/picsforwebsite/IMG_0778.jpeg";
+import img3 from "@/assets/installs/picsforwebsite/Image 6.jpeg";
 
 const photos = [
-  { src: img1, alt: "Outdoor GREE condenser cleanly mounted on the side of a home" },
-  { src: img2, alt: "Mini split installed in a bright home office" },
-  { src: img3, alt: "Mini split installed above bed in a bedroom" },
+  { src: img1, alt: "GREE mini split cleanly installed in a basement bedroom" },
+  { src: img2, alt: "GREE mini split installation in a sunroom" },
+  { src: img3, alt: "New electric baseboard heater installed in a home" },
 ];
 
 export function RecentInstallations() {

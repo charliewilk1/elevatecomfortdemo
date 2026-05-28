@@ -1,19 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { services } from "@/content/services";
-import bedroomImg      from "@/assets/installs/client-bedroom.jpg";
+import miniSplitImg    from "@/assets/installs/picsforwebsite/IMG_1310.jpeg";
+import sunroomImg      from "@/assets/installs/picsforwebsite/IMG_0778.jpeg";
+import baseboardImg    from "@/assets/installs/picsforwebsite/Image 6.jpeg";
+import electricImg     from "@/assets/installs/picsforwebsite/IMG_1002.jpeg";
 import stackedImg      from "@/assets/installs/client-units-stacked.jpg";
 import buildingImg     from "@/assets/installs/client-building.jpg";
-import productImg      from "@/assets/installs/client-gree-product.jpg";
 import heroImg         from "@/assets/hero-image.jpg";
 
 const photoMap: Record<string, string> = {
-  "mini-splits":        bedroomImg,     // ✓ real client — bedroom GREE install
-  "central-ac":         buildingImg,    // ✓ real client — building exterior multi-unit
-  "furnace":            stackedImg,     // ✓ real client — stacked GREE units
-  "electric-heating":   productImg,     // ✓ real client — GREE product shot
-  "baseboard-heating":  bedroomImg,     // ✓ real client — bedroom install
-  "wall-unit-removal":  stackedImg,     // ✓ real client — stacked outdoor units
+  "mini-splits":        miniSplitImg,   // ✓ real — basement GREE install
+  "central-ac":         buildingImg,    // ✓ real — building exterior multi-unit
+  "furnace":            stackedImg,     // placeholder — replace when photo arrives
+  "electric-heating":   electricImg,    // ✓ real — electric wall unit
+  "baseboard-heating":  baseboardImg,   // ✓ real — baseboard install
+  "wall-unit-removal":  sunroomImg,     // ✓ real — sunroom install (replace when removal photo arrives)
 };
 
 const ROTATE_INTERVAL = 3500; // ms between swaps

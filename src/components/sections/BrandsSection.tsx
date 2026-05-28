@@ -4,10 +4,10 @@ import mitsubishiLogo from "@/assets/brands/mitsubishi.png";
 import tclLogo from "@/assets/brands/tcl.svg";
 
 const brands = [
-  { name: "GREE", logo: greeLogo },
-  { name: "Daikin", logo: daikinLogo },
-  { name: "Mitsubishi Electric", logo: mitsubishiLogo },
-  { name: "TCL", logo: tclLogo },
+  { name: "GREE",              logo: greeLogo,        size: "h-14 w-44 sm:h-16 sm:w-52" },
+  { name: "Daikin",            logo: daikinLogo,      size: "h-12 w-36 sm:h-14 sm:w-44" },
+  { name: "Mitsubishi Electric", logo: mitsubishiLogo, size: "h-14 w-44 sm:h-16 sm:w-52" },
+  { name: "TCL",               logo: tclLogo,         size: "h-12 w-36 sm:h-14 sm:w-44" },
 ];
 
 export function BrandsSection() {
@@ -19,7 +19,7 @@ export function BrandsSection() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-14">
           {brands.map((b) => (
-            <div key={b.name} className="flex h-12 w-36 items-center justify-center sm:h-14 sm:w-44">
+            <div key={b.name} className={`flex items-center justify-center ${b.size}`}>
               <img
                 src={b.logo}
                 alt={`${b.name} logo`}

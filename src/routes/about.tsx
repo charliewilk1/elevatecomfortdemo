@@ -38,12 +38,12 @@ function AboutPage() {
             About us
           </div>
           <h1 className="mt-3 text-4xl font-bold uppercase leading-[1.02] tracking-tight text-navy sm:text-5xl md:text-6xl">
-            Trained crew.
+            Professional crew.
             <br />
             <span className="text-orange">Real work.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            We're a trained HVAC crew in the Tri-State Area — mini splits are our
+            We're a professional HVAC crew in the Tri-State Area — mini splits are our
             main thing, but we handle AC and heating too.
           </p>
         </div>
