@@ -329,6 +329,94 @@
       color: #92400e;
       margin-bottom: 20px;
     }
+
+    /* ── Smart Import ── */
+    .smart-import-card {
+      background: var(--card);
+      border: 1.5px solid #c7d2fe;
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .smart-import-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      gap: 12px;
+    }
+    .smart-import-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #eef2ff;
+      color: #4338ca;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .smart-import-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .smart-import-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .toggle-chevron {
+      font-size: 1rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .toggle-chevron.open { transform: rotate(180deg); }
+    .smart-import-body {
+      display: none;
+      margin-top: 18px;
+    }
+    .smart-import-body.open { display: block; }
+    .smart-import-hint {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.55;
+    }
+    .prompt-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid #c7d2fe;
+      color: #4338ca;
+      border-radius: 7px;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+    .prompt-copy-btn:hover { background: #eef2ff; }
+    .smart-import-result {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: none;
+    }
+    .smart-import-result.show-success { display: block; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+    .smart-import-result.show-partial  { display: block; background: #fefce8; color: #854d0e; border: 1px solid #fde68a; }
+    .smart-import-result.show-none     { display: block; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
   </style>
 </head>
 <body>
@@ -341,6 +429,31 @@
 
 <div class="container">
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- ── Smart Import ──────────────────────────────────────────────────── -->
+  <div class="smart-import-card" id="smartImportCard">
+    <div class="smart-import-toggle" onclick="toggleImport()">
+      <div>
+        <div class="smart-import-badge">✦ AI shortcut</div>
+        <div class="smart-import-title">Have a ChatGPT summary? Auto-fill the form.</div>
+        <div class="smart-import-subtitle">Paste text from ChatGPT and we'll fill in as many fields as possible.</div>
+      </div>
+      <span class="toggle-chevron open" id="importChevron">▼</span>
+    </div>
+    <div class="smart-import-body open" id="importBody">
+      <p class="smart-import-hint">
+        Ask ChatGPT to describe your business, paste the result below, and hit <strong>Auto-fill</strong>.
+        We'll populate every field we can recognize — then you just review and fill in the blanks.
+        For best results, use the structured prompt ↓
+      </p>
+      <button class="prompt-copy-btn" id="promptCopyBtn" onclick="copyPrompt()">📋 Copy suggested ChatGPT prompt</button>
+      <div class="field" style="margin-bottom:10px">
+        <textarea id="importText" rows="8" placeholder="Paste your ChatGPT business summary here — structured or freeform, we'll extract what we can…"></textarea>
+      </div>
+      <button class="btn btn-primary" onclick="runSmartFill()">Auto-fill form →</button>
+      <div class="smart-import-result" id="importResult"></div>
+    </div>
+  </div>
 
   <!-- ── Section 1: Business Basics ─────────────────────────────────── -->
   <div class="section-card active" data-section="1">
@@ -609,9 +722,6 @@
     <div class="field"><label>Target launch date <span class="optional">(rough)</span></label>
       <input type="text" id="tech_launch" placeholder="e.g. ASAP, within 3 weeks, by end of August" /></div>
 
-    <div class="field"><label>Budget range <span class="optional">(optional but helpful)</span></label>
-      <input type="text" id="tech_budget" placeholder="e.g. $1,500–$3,000 — or 'flexible, let's talk'" /></div>
-
     <div class="field"><label>Anything else we should know? <span class="optional">(optional)</span></label>
       <textarea id="tech_notes" rows="3" placeholder="Any details, preferences, concerns, or context that doesn't fit anywhere else."></textarea></div>
 
@@ -810,7 +920,6 @@ ${v('comp_list') ? v('comp_list').split('\n').map(l => '  ' + l).join('\n') : ' 
 - Domain: ${v('tech_domain') || 'None yet'}
 - Specific pages needed: ${v('tech_pages') || 'Standard pages'}
 - Target launch: ${v('tech_launch') || 'Not specified'}
-- Budget: ${v('tech_budget') || 'Not specified'}
 - Additional notes: ${v('tech_notes') || 'None'}
 
 ---
@@ -883,6 +992,341 @@ function copySummary() {
   });
 }
 
+// Init progress
+updateProgress();
+
+// ── Smart Import ───────────────────────────────────────────────────────────
+
+function toggleImport() {
+  const body    = document.getElementById('importBody');
+  const chevron = document.getElementById('importChevron');
+  const isOpen  = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chevron.classList.toggle('open', !isOpen);
+}
+
+const CHATGPT_PROMPT = `Describe my business using exactly this format so it can auto-fill a website intake form:
+
+Business Name:
+Phone:
+Email:
+Website:
+City/Location:
+Service Area:
+One-sentence Description:
+Industry/Trade:
+Years in Business:
+Instagram:
+Facebook:
+Google Business:
+
+Services:
+- [Service Name]: [1-sentence description] – From $[price]
+- [Add more as needed]
+
+Origin Story:
+[How the business started — 2-4 sentences]
+
+What Makes Us Different:
+[Key differentiators — 2-3 sentences]
+
+Ideal Customer:
+[Who you serve best — 1-2 sentences]
+
+Team Size:
+[e.g. 3 full-time technicians]
+
+Licenses/Certifications:
+[e.g. EPA 608, licensed in NY & NJ, GREE authorized dealer]
+
+Awards or Notable Work:
+[Any press, awards, or notable clients — or write "None"]
+
+Brand Colors:
+[Hex codes or color names]
+
+Key Stats:
+[e.g. 200+ installs, 5-star average, 8 years in business]
+
+Equipment Brands:
+[Brands you work with or are certified for]
+
+Top Competitors:
+- [Name] – [website if known]
+
+What Competitors Do Well:
+[1-2 sentences]
+
+Our Competitive Edge:
+[1-2 sentences]
+
+Domain:
+Target Launch: `;
+
+function copyPrompt() {
+  navigator.clipboard.writeText(CHATGPT_PROMPT).then(() => {
+    const btn = document.getElementById('promptCopyBtn');
+    btn.textContent = '✓ Copied — paste into ChatGPT!';
+    setTimeout(() => { btn.textContent = '📋 Copy suggested ChatGPT prompt'; }, 3500);
+  });
+}
+
+function runSmartFill() {
+  const text = document.getElementById('importText').value.trim();
+  const result = document.getElementById('importResult');
+
+  if (!text) {
+    result.className = 'smart-import-result show-none';
+    result.textContent = 'Paste some text first.';
+    return;
+  }
+
+  const count = smartFillText(text);
+
+  if (count === 0) {
+    result.className = 'smart-import-result show-none';
+    result.textContent = "Couldn't extract much — try using the suggested ChatGPT prompt for better results.";
+  } else if (count < 5) {
+    result.className = 'smart-import-result show-partial';
+    result.textContent = `Filled ${count} field${count !== 1 ? 's' : ''} — scroll down and review the highlighted fields (shown in yellow). Fill in anything that was missed.`;
+  } else {
+    result.className = 'smart-import-result show-success';
+    result.textContent = `Auto-filled ${count} fields — review the highlighted fields below, then work through the form to fill in the blanks.`;
+  }
+}
+
+function smartFillText(rawText) {
+  let fillCount = 0;
+
+  function flashEl(el) {
+    el.style.transition = 'background 0.3s ease';
+    el.style.background = '#fefce8';
+    setTimeout(() => { el.style.background = ''; el.style.transition = ''; }, 3500);
+  }
+
+  function fill(id, val) {
+    if (!val || !String(val).trim()) return;
+    const el = document.getElementById(id);
+    if (el && !el.value.trim()) {
+      el.value = String(val).trim();
+      flashEl(el);
+      fillCount++;
+    }
+  }
+
+  // ── 1. Universal regex extraction ──────────────────────────────────────
+
+  // Email
+  const emailM = rawText.match(/\b[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,6}\b/);
+  if (emailM) fill('biz_email', emailM[0]);
+
+  // US phone
+  const phoneM = rawText.match(/(?:\+1[-.\s]?)?(?:\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4})/);
+  if (phoneM) fill('biz_phone', phoneM[0]);
+
+  // All URLs
+  const allUrls = [...rawText.matchAll(/https?:\/\/[^\s,;"')\]]+|(?:www\.)?[a-zA-Z0-9\-]+\.(?:com|net|org|co|io|biz|us|nyc|services?)(?:\/[^\s,;"')\]]*)?/g)]
+    .map(m => m[0].replace(/[.,;:'")\]]+$/, ''));
+
+  const socialLines = [];
+  const websiteUrls = [];
+
+  allUrls.forEach(url => {
+    const lc = url.toLowerCase();
+    const full = url.startsWith('http') ? url : 'https://' + url;
+    if (lc.includes('instagram.com') || lc.includes('instagr.am')) {
+      socialLines.push('Instagram: ' + full);
+    } else if (lc.includes('facebook.com') || lc.includes('fb.com')) {
+      socialLines.push('Facebook: ' + full);
+    } else if (lc.includes('yelp.com')) {
+      socialLines.push('Yelp: ' + full);
+    } else if (lc.includes('tiktok.com')) {
+      socialLines.push('TikTok: ' + full);
+    } else if (lc.includes('linkedin.com')) {
+      socialLines.push('LinkedIn: ' + full);
+    } else if (lc.includes('twitter.com') || lc.includes('x.com/')) {
+      socialLines.push('X/Twitter: ' + full);
+    } else if (lc.includes('maps.google') || (lc.includes('google.com') && lc.includes('maps'))) {
+      fill('proof_google', full);
+    } else if (!lc.includes('google.com') && !lc.includes('apple.com')) {
+      websiteUrls.push(full);
+    }
+  });
+
+  if (websiteUrls.length) fill('biz_website', websiteUrls[0]);
+
+  // ── 2. Line-by-line key:value extraction ──────────────────────────────
+
+  const kvMap = {
+    biz_name:       [/^(?:business\s*name|company\s*name|brand\s*name|name)\s*[:\-–—]\s*(.+)/i],
+    biz_phone:      [/^(?:phone(?:\s*number)?|telephone|contact\s*(?:number)?|tel|call)\s*[:\-–—]\s*(.+)/i],
+    biz_email:      [/^(?:e?-?mail(?:\s*address)?|contact\s*e?mail)\s*[:\-–—]\s*(.+)/i],
+    biz_website:    [/^(?:website|site|web(?:\s*address)?|url|homepage)\s*[:\-–—]\s*(.+)/i],
+    biz_city:       [/^(?:city|location|borough|neighborhood|located?\s*in|based\s*in|headquarters?)\s*[:\-–—]\s*(.+)/i],
+    biz_area:       [/^(?:service\s*area|areas?\s*served|coverage|serving|service\s*region)\s*[:\-–—]\s*(.+)/i],
+    biz_tagline:    [/^(?:tagline|slogan|one.?(?:sentence|line)\s*(?:description)?|elevator\s*pitch|description)\s*[:\-–—]\s*(.+)/i],
+    biz_industry:   [/^(?:industry|trade|type\s*(?:of\s*)?business|business\s*type|field|niche)\s*[:\-–—]\s*(.+)/i],
+    biz_years:      [/^(?:years?\s*in\s*business|established|founded|operating\s*since|in\s*business\s*(?:since|for))\s*[:\-–—]\s*(.+)/i],
+    story_customer: [/^(?:ideal\s*(?:customer|client)|target\s*(?:customer|audience|market)|who\s*(?:we|you)\s*serve)\s*[:\-–—]\s*(.+)/i],
+    story_team:     [/^(?:team\s*size|staff|employees?|crew\s*size)\s*[:\-–—]\s*(.+)/i],
+    brand_colors:   [/^(?:brand\s*colors?|color\s*palette|primary\s*colors?|hex\s*codes?)\s*[:\-–—]\s*(.+)/i],
+    brand_dont:     [/^(?:avoid|don'?t\s*want|what\s*to\s*avoid)\s*[:\-–—]\s*(.+)/i],
+    proof_brands:   [/^(?:brands?|equipment\s*brands?|certified\s*(?:dealer\s*)?for|authorized\s*(?:dealer\s*)?for)\s*[:\-–—]\s*(.+)/i],
+    proof_stats:    [/^(?:key\s*stats?|stats?|by\s*the\s*numbers?|achievements?)\s*[:\-–—]\s*(.+)/i],
+    tech_domain:    [/^(?:domain(?:\s*name)?)\s*[:\-–—]\s*(.+)/i],
+    tech_launch:    [/^(?:(?:target\s*)?launch\s*(?:date)?|go.?live|timeline|deadline)\s*[:\-–—]\s*(.+)/i],
+    comp_good:      [/^(?:what\s*competitors?\s*do\s*well|competitor\s*strengths?)\s*[:\-–—]\s*(.+)/i],
+    comp_edge:      [/^(?:(?:our|my)\s*(?:competitive\s*)?(?:advantage|edge)|why\s*we(?:'?re)?\s*better|what\s*sets?\s*us\s*apart)\s*[:\-–—]\s*(.+)/i],
+  };
+
+  const socialKv = {
+    'Instagram': /^instagram\s*[:\-–—]\s*(.+)/i,
+    'Facebook':  /^facebook\s*[:\-–—]\s*(.+)/i,
+    'Yelp':      /^yelp\s*[:\-–—]\s*(.+)/i,
+    'TikTok':    /^tiktok\s*[:\-–—]\s*(.+)/i,
+    'LinkedIn':  /^linkedin\s*[:\-–—]\s*(.+)/i,
+    'Google Business': /^google\s*(?:business|maps|my\s*business)?\s*[:\-–—]\s*(.+)/i,
+  };
+
+  const lines = rawText.split('\n');
+
+  for (const line of lines) {
+    const t = line.trim();
+    if (!t) continue;
+
+    for (const [fieldId, patterns] of Object.entries(kvMap)) {
+      for (const pat of patterns) {
+        const m = t.match(pat);
+        if (m && m[1]) { fill(fieldId, m[1]); break; }
+      }
+    }
+
+    for (const [label, pat] of Object.entries(socialKv)) {
+      const m = t.match(pat);
+      if (m && m[1] && m[1].trim()) {
+        const val = m[1].trim();
+        const formatted = val.startsWith('http') ? val : (val.includes('.') ? 'https://' + val : val);
+        if (label === 'Google Business') {
+          fill('proof_google', formatted);
+        } else {
+          socialLines.push(label + ': ' + formatted);
+        }
+      }
+    }
+  }
+
+  // Deduplicate social lines and fill
+  const uniqueSocial = [...new Set(socialLines)];
+  if (uniqueSocial.length) fill('biz_social', uniqueSocial.join('\n'));
+
+  // ── 3. Block / section extraction ──────────────────────────────────────
+
+  function extractBlock(headerRe) {
+    let capturing = false;
+    const block = [];
+    for (const line of lines) {
+      const t = line.trim();
+      if (capturing) {
+        // Stop at next header-looking line
+        if (t && (/^#+\s/.test(t) || /^[A-Z][A-Za-z &\/]+[:\-–—]$/.test(t) || /^\d+\.\s[A-Z]/.test(t))) break;
+        if (t) block.push(t);
+        else if (block.length) block.push(''); // preserve paragraph breaks
+      } else if (headerRe.test(t)) {
+        capturing = true;
+        // value might be on same line after the colon
+        const inline = t.match(/[:\-–—]\s*(.+)/);
+        if (inline && inline[1].trim()) block.push(inline[1].trim());
+      }
+    }
+    const result = block.join('\n').trim();
+    return result || null;
+  }
+
+  const blockMappings = [
+    ['story_how',     /^(?:(?:origin\s*)?story|about(?:\s*us)?|how\s*(?:we\s*)?started|background|history|our\s*journey)\s*[:\-–—]?$/i],
+    ['story_diff',    /^(?:what\s*makes?\s*(?:us|you)\s*different|differentiators?|why\s*choose\s*(?:us)?|our\s*edge|competitive\s*differentiators?|unique\s*(?:value\s*)?(?:proposition)?)\s*[:\-–—]?$/i],
+    ['story_certs',   /^(?:licenses?\s*(?:&\s*|and\s*)?certifications?|certifications?|credentials?|affiliations?)\s*[:\-–—]?$/i],
+    ['story_awards',  /^(?:awards?(?:\s*(?:&|and)\s*recognition)?|press\s*coverage|media|notable\s*(?:work|clients?)|recognition)\s*[:\-–—]?$/i],
+    ['comp_list',     /^(?:(?:top\s*|main\s*|direct\s*)?competitors?|competition)\s*[:\-–—]?$/i],
+    ['comp_good',     /^(?:what\s*competitors?\s*do\s*well|competitor\s*strengths?)\s*[:\-–—]?$/i],
+    ['comp_edge',     /^(?:(?:our|my)\s*(?:competitive\s*)?(?:advantage|edge)|why\s*(?:we|you)(?:'?re)?\s*better|what\s*sets?\s*(?:us|you)\s*apart)\s*[:\-–—]?$/i],
+    ['proof_reviews', /^(?:reviews?|testimonials?|what\s*(?:customers?|clients?)\s*say)\s*[:\-–—]?$/i],
+    ['proof_stats',   /^(?:key\s*stats?|stats?|by\s*the\s*numbers?)\s*[:\-–—]?$/i],
+    ['proof_brands',  /^(?:equipment\s*brands?|brands?\s*(?:we\s*work\s*with)?|authorized\s*for)\s*[:\-–—]?$/i],
+    ['brand_colors',  /^(?:brand\s*colors?|color\s*palette)\s*[:\-–—]?$/i],
+    ['story_customer',/^(?:ideal\s*(?:customer|client)|target\s*(?:customer|audience|market)|who\s*(?:we|you)\s*serve)\s*[:\-–—]?$/i],
+    ['story_team',    /^(?:team\s*size|staff|employees?)\s*[:\-–—]?$/i],
+    ['tech_domain',   /^(?:domain(?:\s*name)?)\s*[:\-–—]?$/i],
+    ['tech_launch',   /^(?:(?:target\s*)?launch\s*(?:date)?|go.?live|timeline)\s*[:\-–—]?$/i],
+  ];
+
+  for (const [fieldId, re] of blockMappings) {
+    const block = extractBlock(re);
+    if (block) fill(fieldId, block);
+  }
+
+  // ── 4. Services extraction ──────────────────────────────────────────────
+
+  const svcHeaderRe = /^(?:(?:our\s*)?services?|what\s*we\s*offer|service\s*(?:list|offerings?))\s*[:\-–—]?$/i;
+  let inSvc = false;
+  const svcLines = [];
+
+  for (const line of lines) {
+    const t = line.trim();
+    if (svcHeaderRe.test(t)) { inSvc = true; continue; }
+    if (inSvc) {
+      if (!t) continue;
+      if (/^#+\s/.test(t) || /^[A-Z][A-Za-z &\/]+[:\-–—]$/.test(t)) break;
+      if (/^[-•*]|\d+[.)]\s/.test(t)) svcLines.push(t);
+    }
+  }
+
+  svcLines.forEach((line, idx) => {
+    const cleaned = line.replace(/^[-•*\d.)]+\s*/, '').trim();
+    if (!cleaned) return;
+
+    let name = cleaned, desc = '', price = '';
+
+    const sepIdx = cleaned.search(/[:\-–—]/);
+    if (sepIdx > 0) {
+      name = cleaned.slice(0, sepIdx).trim();
+      const rest = cleaned.slice(sepIdx + 1).trim();
+      const priceM = rest.match(/(?:from\s+)?\$[\d,]+(?:\s*\+|\s*installed|\s*\/\s*zone)?/i);
+      if (priceM) {
+        price = priceM[0];
+        desc = rest.replace(priceM[0], '').replace(/[,\s\-–—]+$/, '').trim();
+      } else {
+        desc = rest;
+      }
+    }
+
+    if (idx === 0) {
+      const first = document.querySelector('.service-item');
+      if (first) {
+        const ni = first.querySelector('.svc-name');
+        const si = first.querySelector('.svc-short');
+        const pi = first.querySelector('.svc-price');
+        if (ni && !ni.value) { ni.value = name; flashEl(ni); fillCount++; }
+        if (si && !si.value && desc) { si.value = desc; flashEl(si); }
+        if (pi && !pi.value && price) { pi.value = price; flashEl(pi); }
+      }
+    } else {
+      addService();
+      const all = document.querySelectorAll('.service-item');
+      const last = all[all.length - 1];
+      if (last) {
+        const ni = last.querySelector('.svc-name');
+        const si = last.querySelector('.svc-short');
+        const pi = last.querySelector('.svc-price');
+        if (ni) { ni.value = name; flashEl(ni); fillCount++; }
+        if (si && desc) { si.value = desc; flashEl(si); }
+        if (pi && price) { pi.value = price; flashEl(pi); }
+      }
+    }
+  });
+
+  return fillCount;
+}
 // Init progress
 updateProgress();
 </script>
