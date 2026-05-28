@@ -400,6 +400,70 @@ function MiniSplitsPage() {
         </div>
       </section>
 
+      {/* ── Cost savings vs alternatives ────────────────────── */}
+      <section className="section-y">
+        <div className="container-page">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.18em] text-eyebrow">
+              Monthly operating costs
+            </div>
+            <div className="mt-4 flex flex-wrap items-baseline justify-center gap-x-4">
+              <span className="text-3xl font-bold text-navy sm:text-4xl">Mini splits run</span>
+              <span className="text-[5rem] font-extrabold leading-none text-orange [font-family:'Barlow_Condensed',sans-serif] sm:text-[7rem]">
+                30%
+              </span>
+              <span className="text-3xl font-bold text-navy sm:text-4xl">cheaper</span>
+            </div>
+            <p className="mt-4 mx-auto max-w-xl text-base text-muted-foreground">
+              Compared to traditional heating and cooling systems — every month, on your utility bill.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {[
+              {
+                system: "Electric Baseboard",
+                savings: "Up to 60%",
+                icon: Thermometer,
+                desc: "Baseboard heat converts every watt to warmth at 100% efficiency. A mini split heat pump moves heat instead — delivering 3× as much warmth per dollar of electricity.",
+              },
+              {
+                system: "Central AC",
+                savings: "Up to 30%",
+                icon: Wind,
+                desc: "Central systems lose 20–30% of conditioned air through leaky ductwork. Ductless mini splits deliver directly to the room — zero duct losses.",
+              },
+              {
+                system: "Gas Furnace",
+                savings: "Up to 40%",
+                icon: Flame,
+                desc: "Even a 98% efficient furnace burns fuel to make heat. At moderate winter temps, a heat pump delivers 2–3× more heat per dollar than any combustion system.",
+              },
+            ].map(({ system, savings, icon: Icon, desc }) => (
+              <div key={system} className="rounded-2xl border border-border bg-card p-7">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-orange/10">
+                    <Icon className="h-4 w-4 text-orange" />
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-wider text-navy/50">
+                    vs. {system}
+                  </p>
+                </div>
+                <p className="mt-5 text-5xl font-extrabold leading-none text-orange [font-family:'Barlow_Condensed',sans-serif]">
+                  {savings}
+                </p>
+                <p className="mt-1 text-sm font-bold text-navy">cheaper to run</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-center text-xs text-muted-foreground">
+            * Estimates based on U.S. DOE and ENERGY STAR data. Actual savings vary by usage, home size, and climate.
+          </p>
+        </div>
+      </section>
+
       {/* ── Pricing ──────────────────────────────────────────── */}
       <section className="section-y">
         <div className="container-page">
